@@ -5,52 +5,36 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 import MyComponent from '../components/helplineCard';
-import Lawyers from '../screens/Lawyers';
-
-import { createStackNavigator } from '@react-navigation/stack';
-
-import { LawyerList } from '../types';
-
-
 
 export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <MyComponent 
-        name="Awareness" 
-        content="Understand what harassment is"
-        image = {require('../icons/2x/bulb.png')}
+        name="Support Groups" 
+        content="Share your story with the community"
+        image = {require('../icons/2x/baseline_groups_black_36dp.png')}
         ></MyComponent> 
       </View>
 
       <View style={styles.card}> 
         <MyComponent 
-        name="Reporting" 
-        content="Guide on how to report harassment"
-        image = {require('../icons/2x/report.png')}
+        name="Contact a Therapist" 
+        content="Get counselling from a professional"
+        image = {require('../icons/2x/therapist.png')}
         ></MyComponent> 
       </View>
       
       <View style={styles.card}>
         <MyComponent
-        name="Parenting"
-        content="Awareness for children harassment"
-        image = {require('../icons/2x/parenting.png')}
-        ></MyComponent> 
-      </View>
-
-      <View style={styles.card}>
-        <MyComponent
-        name="Laws"
-        content="Know your legal rights"
-        image = {require('../icons/2x/gavel.png')}
+        name="Contact a Lawyer"
+        content="Take legal action against the harasser"
+        image = {require('../icons/2x/baseline_museum_black_36dp.png')}
         ></MyComponent> 
       </View>
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

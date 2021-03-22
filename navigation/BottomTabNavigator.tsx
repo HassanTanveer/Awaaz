@@ -1,13 +1,18 @@
-import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
+import { StyleSheet } from 'react-native';
+import Icon from "react-native-vector-icons/Ionicons";
+
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import TabThreeScreen from '../screens/TabThreeScreen';
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
+
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,30 +21,56 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName="SOS"
+      tabBarOptions={{
+        activeTintColor: "#790C5A",
+        inactiveTintColor: "#b3b3cc",
+        labelStyle: { fontSize: 14, fontWeight: "bold"},
+      }}
+      >
       <BottomTab.Screen
-        name="TabOne"
+        name="SOS"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ focused }) => {
+            let iconName;
+            let shade;
+            iconName = `help-buoy${focused ? '' : '-outline'}`;
+            shade = `${focused ? '#790C5A' : '#b3b3cc'}`;
+            return <Icon name={iconName} size={25} color={shade} />;
+          },
         }}
       />
+      
       <BottomTab.Screen
-        name="TabTwo"
+        name="Help"
+        component={TabThreeNavigator}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            let iconName;
+            let shade;
+            iconName = `people${focused ? '' : '-outline'}`;
+            shade = `${focused ? '#790C5A' : '#b3b3cc'}`;
+            return <Icon name={iconName} size={25} color={shade} />;
+          },
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Learn"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ focused }) => {
+            let iconName;
+            let shade;
+            iconName = `bulb${focused ? '' : '-outline'}`;
+            shade = `${focused ? '#790C5A' : '#b3b3cc'}`;
+            return <Icon name={iconName} size={25} color={shade} />;
+          },
         }}
       />
     </BottomTab.Navigator>
   );
-}
-
-// You can explore the built-in icon families and icons on the web at:
-// https://icons.expo.fyi/
-function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -52,7 +83,17 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="TabOneScreen"
         component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ 
+          title: 'SOS',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
       />
     </TabOneStack.Navigator>
   );
@@ -66,8 +107,56 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ 
+          title: 'Learn',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
       />
     </TabTwoStack.Navigator>
   );
 }
+
+const TabThreeStack = createStackNavigator<TabThreeParamList>();
+
+function TabThreeNavigator() {
+  return (
+    <TabThreeStack.Navigator>
+      <TabThreeStack.Screen
+        name="TabThreeScreen"
+        component={TabThreeScreen}
+        options={{ 
+          title: 'Help',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+    </TabThreeStack.Navigator>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  card: {
+    margin: 5,
+    shadowOffset: { width: 0, height: 1 },
+    shadowColor: '#F1D4D4',
+    shadowOpacity: 100,
+    shadowRadius: 4,
+    elevation: 3
+  }
+});
