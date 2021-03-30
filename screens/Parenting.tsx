@@ -7,7 +7,7 @@ import { Text, View } from '../components/Themed';
 
 import MyComponent from '../components/helplineCard';
 
-export default function Awareness( navigation: { navigate: (arg0: string) => void; } ) {
+export default function Parenting( navigation: { navigate: (arg0: string) => void; } ) {
   return (
     <View style={styles.container}>
 

@@ -6,7 +6,7 @@ import { Text, View } from '../components/Themed';
 
 import MyComponent from '../components/helplineCard';
 
-export default function Lawyers() {
+export default function Helplines() {
   return (
     <View style={styles.container}>
       <View style={styles.card}>

@@ -22,6 +22,11 @@ import Reporting from '../screens/Reporting';
 import Parenting from '../screens/Parenting';
 import SignsOfHarassment from '../screens/SignsOfHarassment';
 import TalkingToYourChild from '../screens/TalkingToYourChild';
+import Laws from '../screens/Laws';
+import SexualHarassmentLaw from '../screens/SexualHarassmentLaw';
+import Workplace from '../screens/Workplace';
+import Rape from '../screens/Rape';
+import Children from '../screens/Children';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
 
 
@@ -280,7 +285,84 @@ function TabTwoNavigator() {
           },
         }}
       />
+      <TabTwoStack.Screen
+        name="Laws"
+        component={Laws}
+        options={{ 
+          title: 'Laws',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="SexualHarassmentLaw"
+        component={SexualHarassmentLaw}
+        options={{ 
+          title: 'Sexual Harassment',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="Workplace"
+        component={Workplace}
+        options={{ 
+          title: 'Workplace',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="Rape"
+        component={Rape}
+        options={{ 
+          title: 'Rape',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="Children"
+        component={Children}
+        options={{ 
+          title: 'Children',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+
     </TabTwoStack.Navigator>
+    
   );
 }
 

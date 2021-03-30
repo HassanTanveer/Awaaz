@@ -47,11 +47,13 @@ export default function TabTwoScreen( navigation: { navigate: (arg0: string) => 
       </View>
 
       <View style={styles.card}>
-        <MyComponent
-          name="Laws"
-          content="Know your legal rights"
-          image = {require('../icons/2x/gavel.png')}
-        ></MyComponent> 
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Laws')}>
+          <MyComponent
+            name = "Laws"
+            content = "Know your legal rights"
+            image = {require('../icons/2x/gavel.png')}
+          ></MyComponent>
+        </TouchableOpacity>
       </View>
 
     </View>

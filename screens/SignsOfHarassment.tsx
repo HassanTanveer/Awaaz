@@ -7,7 +7,7 @@ import { Text, View } from '../components/Themed';
 
 import MyComponent from '../components/helplineCard';
 
-export default function Reporting() {
+export default function SignsOfHarassment() {
   return (
     <View style={styles.container}>
 
