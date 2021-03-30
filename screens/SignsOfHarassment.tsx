@@ -12,7 +12,7 @@ export default function SignsOfHarassment() {
     <View style={styles.container}>
 
       <View style={styles.card}>
-        <ScrollView style={styles.scrollView}>
+        {/* <ScrollView style={styles.scrollView}> */}
           <Card style = {styles.container2}>
             <Card.Content>
                 {/* <Title style = {styles.title}> Examples of Harassment </Title> */}
@@ -26,7 +26,7 @@ export default function SignsOfHarassment() {
                 <Paragraph style = {styles.paragraph}>7. Self-harm or attempts at suicide.</Paragraph>
             </Card.Content>
           </Card>
-        </ScrollView>
+        {/* </ScrollView> */}
       </View>
 
     </View>

@@ -12,7 +12,7 @@ export default function TalkingToYourChild() {
     <View style={styles.container}>
 
       <View style={styles.card}>
-        <ScrollView style={styles.scrollView}>
+        {/* <ScrollView style={styles.scrollView}> */}
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}>Tips For Talking To Your Children About Sexual Harassment</Title>
@@ -26,7 +26,7 @@ export default function TalkingToYourChild() {
                 <Paragraph style = {styles.paragraph}>6. Teach Your Child to Report It.</Paragraph>
             </Card.Content>
           </Card>
-        </ScrollView>
+        {/* </ScrollView> */}
       </View>
 
     </View>
