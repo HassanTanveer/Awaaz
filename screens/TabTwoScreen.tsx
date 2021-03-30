@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
@@ -13,40 +13,45 @@ import { LawyerList } from '../types';
 
 
 
-export default function TabTwoScreen() {
+export default function TabTwoScreen( navigation: { navigate: (arg0: string) => void; } ) {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <MyComponent 
-        name="Awareness" 
-        content="Understand what harassment is"
-        image = {require('../icons/2x/bulb.png')}
-        ></MyComponent> 
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Awareness')}  style={styles.appButtonContainer}>
+          <MyComponent 
+            name = "Awareness" 
+            content = "Understand what harassment is"
+            image = {require('../icons/2x/bulb.png')}
+          ></MyComponent>
+        </TouchableOpacity>
       </View>
 
-      <View style={styles.card}> 
-        <MyComponent 
-        name="Reporting" 
-        content="Guide on how to report harassment"
-        image = {require('../icons/2x/report.png')}
-        ></MyComponent> 
+      <View style={styles.card}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Reporting')}  style={styles.appButtonContainer}>
+          <MyComponent
+            name = "Reporting"
+            content = "Guide on how to report harassment"
+            image = {require('../icons/2x/report.png')}
+          ></MyComponent>
+        </TouchableOpacity>
       </View>
       
       <View style={styles.card}>
         <MyComponent
-        name="Parenting"
-        content="Awareness for children harassment"
-        image = {require('../icons/2x/parenting.png')}
+          name = "Parenting"
+          content = "Awareness for children harassment"
+          image = {require('../icons/2x/parenting.png')}
         ></MyComponent> 
       </View>
 
       <View style={styles.card}>
         <MyComponent
-        name="Laws"
-        content="Know your legal rights"
-        image = {require('../icons/2x/gavel.png')}
+          name="Laws"
+          content="Know your legal rights"
+          image = {require('../icons/2x/gavel.png')}
         ></MyComponent> 
       </View>
+
     </View>
   );
 }

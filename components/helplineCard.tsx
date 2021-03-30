@@ -6,13 +6,13 @@ const MyComponent = (props) => (
     
     <Card style = {styles.container}>
         <Card.Content>
-        <Title style = {styles.title}>{props.name}</Title>
-        <Paragraph>{props.content}</Paragraph>
+            <Title style = {styles.title}>{props.name}</Title>
+            <Paragraph>{props.content}</Paragraph>
         </Card.Content>
         <Card.Cover source = {props.image}  style={styles.image}/>
         <Card.Actions>
-        <Button>{props.firstButton}</Button>
-        <Button>{props.secondButton}</Button>
+            <Button>{props.firstButton}</Button>
+            <Button>{props.secondButton}</Button>
         </Card.Actions>
     </Card>
 );
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         marginTop: -40,        
         width: 48,
         height: 48
-    }
+    },
   });
   
 export default MyComponent;

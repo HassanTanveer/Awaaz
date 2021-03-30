@@ -11,6 +11,14 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
+import NotFoundScreen from '../screens/NotFoundScreen';
+import Lawyers from '../screens/Lawyers';
+import Therapists from '../screens/Therapists';
+import Helplines from '../screens/Helplines';
+import Awareness from '../screens/Awareness';
+import Harassment from '../screens/Harassment';
+import SexualHarassment from '../screens/SexualHarassment';
+import Reporting from '../screens/Reporting';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
 
 
@@ -27,7 +35,7 @@ export default function BottomTabNavigator() {
         inactiveTintColor: "#b3b3cc",
         labelStyle: { fontSize: 14, fontWeight: "bold"},
       }}
-      >
+    >
       <BottomTab.Screen
         name="SOS"
         component={TabOneNavigator}
@@ -95,6 +103,36 @@ function TabOneNavigator() {
           },
         }}
       />
+      <TabOneStack.Screen
+        name="Notfound"
+        component={NotFoundScreen}
+        options={{ 
+          title: 'Notfound',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabOneStack.Screen
+        name="Helplines"
+        component={Helplines}
+        options={{ 
+          title: 'Helplines',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
     </TabOneStack.Navigator>
   );
 }
@@ -119,6 +157,81 @@ function TabTwoNavigator() {
           },
         }}
       />
+      <TabTwoStack.Screen
+        name="Notfound"
+        component={NotFoundScreen}
+        options={{ 
+          title: 'Notfound',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="Awareness"
+        component={Awareness}
+        options={{ 
+          title: 'Awareness',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="Harassment"
+        component={Harassment}
+        options={{ 
+          title: 'Harassment',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="SexualHarassment"
+        component={SexualHarassment}
+        options={{ 
+          title: 'SexualHarassment',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="Reporting"
+        component={Reporting}
+        options={{ 
+          title: 'Reporting',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
     </TabTwoStack.Navigator>
   );
 }
@@ -133,6 +246,51 @@ function TabThreeNavigator() {
         component={TabThreeScreen}
         options={{ 
           title: 'Help',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabThreeStack.Screen
+        name="Notfound"
+        component={NotFoundScreen}
+        options={{ 
+          title: 'Notfound',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabThreeStack.Screen
+        name="Lawyers"
+        component={Lawyers}
+        options={{ 
+          title: 'Lawyers',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabThreeStack.Screen
+        name="Therapists"
+        component={Therapists}
+        options={{ 
+          title: 'Therapists',
           headerStyle: {
           backgroundColor: '#FFF',
           },

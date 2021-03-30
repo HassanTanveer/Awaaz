@@ -9,7 +9,7 @@ import DisplayAnImage from '../components/AddImage'
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
 import { relative } from 'node:path';
 
-export default function TabOneScreen( navigation: { navigation: { navigate: (arg0: string) => void; }; } ) {
+export default function TabOneScreen( navigation: { navigate: (arg0: string) => void; } ) {
   const [SOSText, setSOSText] = useState("SOS");
 
   let state = {
@@ -28,40 +28,34 @@ export default function TabOneScreen( navigation: { navigation: { navigate: (arg
 
   return (
     <View style={styles.container}>
+      
       <View style={styles.bigbox}>
         <View style={styles.bigInner}>
-          <TouchableOpacity onPress={() => navigation.navigation.navigate('Help')}  style={styles.appButtonContainer}>
+          <TouchableOpacity onPress={() => navigation.navigation.navigate('Notfound')}  style={styles.appButtonContainer}>
             <Text style={stylebox}>{SOSText}</Text>
             <Text style={styles.textSubtitle}>Notify police and your emergency contacts</Text>  
           </TouchableOpacity>
-          
         </View>
       </View>
       
       <View style={styles.box}>
         <View style={styles.inner}>
-          <TouchableOpacity onPress={() => {}}  style={styles.appButtonContainer}>
-            <Text style={styles.textOne}>Helplines</Text>
-
+          <TouchableOpacity onPress={() => navigation.navigation.navigate('Helplines')}  style={styles.appButtonContainer}>
+            <Text style={styles.textOne}> Helplines </Text>
             <DisplayAnImage
-            image = {require('../icons/2x/call.png')}>
+              image = {require('../icons/2x/call.png')}>
             </DisplayAnImage>
-            
           </TouchableOpacity>
         </View>
       </View>
 
       <View style={styles.box}>
-        <View 
-          style={styles.inner}
-        >
+        <View style={styles.inner} >
           <TouchableOpacity onPress={() => {}}  style={styles.appButtonContainer}>
             <Text style={styles.textOne}>Alarm</Text>
-
             <DisplayAnImage
-            image = {require('../icons/2x/alarm.png')}>
+              image = {require('../icons/2x/alarm.png')}>
             </DisplayAnImage>
-
           </TouchableOpacity>
         </View>
       </View>
@@ -70,14 +64,13 @@ export default function TabOneScreen( navigation: { navigation: { navigate: (arg
         <View style={styles.inner}>
           <TouchableOpacity onPress={() => {}}  style={styles.appButtonContainer}>
             <Text style={styles.textOne}>Record</Text>
-
             <DisplayAnImage
             image = {require('../icons/2x/record.png')}>
             </DisplayAnImage>
-            
           </TouchableOpacity>
         </View>
       </View>
+
     </View>
   );
 }
