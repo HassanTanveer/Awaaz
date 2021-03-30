@@ -17,7 +17,7 @@ export default function TabTwoScreen( navigation: { navigate: (arg0: string) => 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('Awareness')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Awareness')}>
           <MyComponent 
             name = "Awareness" 
             content = "Understand what harassment is"
@@ -27,7 +27,7 @@ export default function TabTwoScreen( navigation: { navigate: (arg0: string) => 
       </View>
 
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('Reporting')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Reporting')}>
           <MyComponent
             name = "Reporting"
             content = "Guide on how to report harassment"
@@ -37,11 +37,13 @@ export default function TabTwoScreen( navigation: { navigate: (arg0: string) => 
       </View>
       
       <View style={styles.card}>
-        <MyComponent
-          name = "Parenting"
-          content = "Awareness for children harassment"
-          image = {require('../icons/2x/parenting.png')}
-        ></MyComponent> 
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Parenting')}>
+          <MyComponent
+            name = "Parenting"
+            content = "Awareness for children harassment"
+            image = {require('../icons/2x/parenting.png')}
+          ></MyComponent>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.card}>

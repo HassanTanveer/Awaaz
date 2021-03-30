@@ -19,6 +19,9 @@ import Awareness from '../screens/Awareness';
 import Harassment from '../screens/Harassment';
 import SexualHarassment from '../screens/SexualHarassment';
 import Reporting from '../screens/Reporting';
+import Parenting from '../screens/Parenting';
+import SignsOfHarassment from '../screens/SignsOfHarassment';
+import TalkingToYourChild from '../screens/TalkingToYourChild';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
 
 
@@ -150,7 +153,7 @@ function TabTwoNavigator() {
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
@@ -165,7 +168,7 @@ function TabTwoNavigator() {
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
@@ -180,7 +183,7 @@ function TabTwoNavigator() {
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
@@ -195,7 +198,7 @@ function TabTwoNavigator() {
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
@@ -206,11 +209,11 @@ function TabTwoNavigator() {
         name="SexualHarassment"
         component={SexualHarassment}
         options={{ 
-          title: 'SexualHarassment',
+          title: 'Sexual Harassment',
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
@@ -225,7 +228,52 @@ function TabTwoNavigator() {
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="Parenting"
+        component={Parenting}
+        options={{ 
+          title: 'Parenting',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="SignsOfHarassment"
+        component={SignsOfHarassment}
+        options={{ 
+          title: 'Signs Of Harassment',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="TalkingToYourChild"
+        component={TalkingToYourChild}
+        options={{ 
+          title: 'Talking To Your Child',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
@@ -249,7 +297,7 @@ function TabThreeNavigator() {
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
@@ -264,7 +312,7 @@ function TabThreeNavigator() {
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
@@ -279,7 +327,7 @@ function TabThreeNavigator() {
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
@@ -294,7 +342,7 @@ function TabThreeNavigator() {
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
