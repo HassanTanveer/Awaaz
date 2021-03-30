@@ -27,6 +27,8 @@ import SexualHarassmentLaw from '../screens/SexualHarassmentLaw';
 import Workplace from '../screens/Workplace';
 import Rape from '../screens/Rape';
 import Children from '../screens/Children';
+import SupportGroups from '../screens/SupportGroups';
+
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
 
 
@@ -100,11 +102,11 @@ function TabOneNavigator() {
         name="TabOneScreen"
         component={TabOneScreen}
         options={{ 
-          title: 'SOS',
+          title: 'Harassment Assisted',
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
@@ -119,7 +121,7 @@ function TabOneNavigator() {
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
@@ -134,7 +136,7 @@ function TabOneNavigator() {
           headerStyle: {
           backgroundColor: '#FFF',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#790C5A',
           headerTitleStyle: {
           color: "#790C5A",
           fontWeight: 'bold',
@@ -421,6 +423,21 @@ function TabThreeNavigator() {
         component={Therapists}
         options={{ 
           title: 'Therapists',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabThreeStack.Screen
+        name="SupportGroups"
+        component={SupportGroups}
+        options={{ 
+          title: 'Support Groups',
           headerStyle: {
           backgroundColor: '#FFF',
           },

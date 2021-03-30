@@ -12,7 +12,7 @@ export default function TabTwoScreen( navigation: { navigate: (arg0: string) => 
     <View style={styles.container}>
       
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('Notfound')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('SupportGroups')}  style={styles.appButtonContainer}>
           <MyComponent
             name="Support Groups" 
             content="Share your story with the community"
