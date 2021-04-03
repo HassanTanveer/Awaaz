@@ -33,6 +33,28 @@ export default function Awareness( navigation: { navigate: (arg0: string) => voi
         </TouchableOpacity>
       </View>
 
+      <View style={styles.card}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('WorkplaceHarassment')}  style={styles.appButtonContainer}>
+          <Card style = {styles.container2}>
+            <Card.Content>
+                <Title style = {styles.title}> Workplace Harassment </Title>
+                <Paragraph style = {styles.paragraph}> What is harassment in workplace? </Paragraph>
+            </Card.Content>
+          </Card>
+        </TouchableOpacity>
+      </View>
+      
+      <View style={styles.card}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('CyberHarassment')}  style={styles.appButtonContainer}>
+          <Card style = {styles.container2}>
+            <Card.Content>
+                <Title style = {styles.title}> Cyber Harassment </Title>
+                <Paragraph style = {styles.paragraph}> What is Cyber Harassment? </Paragraph>
+            </Card.Content>
+          </Card>
+        </TouchableOpacity>
+      </View>
+
     </View>
   );
 }

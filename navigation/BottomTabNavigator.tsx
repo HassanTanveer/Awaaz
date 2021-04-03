@@ -28,6 +28,8 @@ import Workplace from '../screens/Workplace';
 import Rape from '../screens/Rape';
 import Children from '../screens/Children';
 import SupportGroups from '../screens/SupportGroups';
+import WorkplaceHarassment from '../screens/WorkplaceHarassment';
+import CyberHarassment from '../screens/CyberHarassment';
 
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
 
@@ -217,6 +219,36 @@ function TabTwoNavigator() {
         component={SexualHarassment}
         options={{ 
           title: 'Sexual Harassment',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="WorkplaceHarassment"
+        component={WorkplaceHarassment}
+        options={{ 
+          title: 'Workplace Harassment',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabTwoStack.Screen
+        name="CyberHarassment"
+        component={CyberHarassment}
+        options={{ 
+          title: 'Cyber Harassment',
           headerStyle: {
           backgroundColor: '#FFF',
           },

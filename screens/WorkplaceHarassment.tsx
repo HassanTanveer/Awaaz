@@ -1,19 +1,20 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 import MyComponent from '../components/helplineCard';
 
-export default function SexualHarassment() {
+export default function WorkplaceHarassment() {
   return (
     <View style={styles.container}>
 
       <View style={styles.card}>  
         <Card style = {styles.container2}>
           <Card.Content>
-              <Title style = {styles.title}> Examples of Sexual Harassment </Title>
+              <Title style = {styles.title}> What is Workplace Harassment? </Title>
               <Paragraph style = {styles.paragraph}> 1. Physical acts of sexual assault. </Paragraph>
               <Paragraph style = {styles.paragraph}> 2. Verbal harassment of a sexual nature, including jokes referring to sexual acts or sexual orientation. </Paragraph>
               <Paragraph style = {styles.paragraph}> 3. Making inappropriate sexual gestures and advances. </Paragraph>

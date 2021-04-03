@@ -4,30 +4,38 @@ import { StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-import MyComponent from '../components/helplineCard';
+import CallCard from '../components/callCard'
 
 export default function Therapists() {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <MyComponent 
+        <CallCard 
           name="Therapist 1" 
           content="abcdef"
-        ></MyComponent> 
+          number="1234567"
+          secondButton="Email"
+          email="abc@def.com"
+        ></CallCard> 
       </View>
 
       <View style={styles.card}>
-        <MyComponent 
+        <CallCard 
           name="Therapist 1" 
           content="abcdef"
-        ></MyComponent> 
+          number="1234567"
+          secondButton="Email"
+          email="abc@def.com"
+        ></CallCard> 
       </View>
 
       <View style={styles.card}>
-        <MyComponent 
+        <CallCard 
           name="Therapist 1" 
           content="abcdef"
-        ></MyComponent> 
+          number="1234567"
+        
+        ></CallCard> 
       </View>
 
     </View>
