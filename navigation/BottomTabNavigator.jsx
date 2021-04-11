@@ -38,7 +38,7 @@ require('firebase/auth')
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList, TabFourParamList } from '../types';
 
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+const BottomTab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
@@ -82,7 +82,7 @@ export default function BottomTabNavigator() {
           tabBarIcon: ({ focused }) => {
             let iconName;
             let shade;
-            iconName = `people${focused ? '' : '-outline'}`;
+            iconName = `shield${focused ? '' : '-outline'}`;
             shade = `${focused ? '#790C5A' : '#b3b3cc'}`;
             return <Icon name={iconName} size={25} color={shade} />;
           },
@@ -110,7 +110,7 @@ export default function BottomTabNavigator() {
           tabBarIcon: ({ focused }) => {
             let iconName;
             let shade;
-            iconName = `bulb${focused ? '' : '-outline'}`;
+            iconName = `person-circle${focused ? '' : '-outline'}`;
             shade = `${focused ? '#790C5A' : '#b3b3cc'}`;
             return <Icon name={iconName} size={25} color={shade} />;
           },
@@ -122,7 +122,7 @@ export default function BottomTabNavigator() {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const TabOneStack = createStackNavigator();
 
 function TabOneNavigator() {
   return (
@@ -176,7 +176,7 @@ function TabOneNavigator() {
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const TabTwoStack = createStackNavigator();
 
 function TabTwoNavigator() {
   return (
@@ -427,7 +427,7 @@ function TabTwoNavigator() {
   );
 }
 
-const TabThreeStack = createStackNavigator<TabThreeParamList>();
+const TabThreeStack = createStackNavigator();
 
 function TabThreeNavigator() {
   return (
@@ -511,7 +511,7 @@ function TabThreeNavigator() {
   );
 }
 
-const TabFourStack = createStackNavigator<TabFourParamList>();
+const TabFourStack = createStackNavigator();
 
 function TabFourNavigator() {
   return (

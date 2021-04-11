@@ -4,7 +4,7 @@ import * as Google from 'expo-google-app-auth';
 import firebase from "firebase/app";
 require('firebase/auth')
 
-const Login = (navigation) => {
+const Login = () => {
     let signInWithGoogleAsync = async () => {
         try {
           const result = await Google.logInAsync({

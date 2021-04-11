@@ -7,38 +7,49 @@ import { Text, View } from '../components/Themed';
 
 import MyComponent from '../components/helplineCard';
 
-export default function Parenting( navigation: { navigate: (arg0: string) => void; } ) {
+export default function Awareness( navigation ) {
   return (
     <View style={styles.container}>
 
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('SignsOfHarassment')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Harassment')}  style={styles.appButtonContainer}>
           <Card style = {styles.container2}>
             <Card.Content>
-                <Title style = {styles.title}> Signs Of Harassment </Title>
-                <Paragraph style = {styles.paragraph}> Signs In Your Children That May Indicate Harassment </Paragraph>
+                <Title style = {styles.title}> Harassment </Title>
+                <Paragraph style = {styles.paragraph}> What does Harassment Look Like? </Paragraph>
             </Card.Content>
           </Card>
         </TouchableOpacity>
       </View>
 
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('TalkingToYourChild')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('SexualHarassment')}  style={styles.appButtonContainer}>
           <Card style = {styles.container2}>
             <Card.Content>
-                <Title style = {styles.title}> Talking To Your Child </Title>
-                <Paragraph style = {styles.paragraph}> Talking To Your Child About Harassment </Paragraph>
+                <Title style = {styles.title}> Sexual Harassment </Title>
+                <Paragraph style = {styles.paragraph}> What does Sexual Harassment Look Like? </Paragraph>
             </Card.Content>
           </Card>
         </TouchableOpacity>
       </View>
 
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('NotFound')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('WorkplaceHarassment')}  style={styles.appButtonContainer}>
           <Card style = {styles.container2}>
             <Card.Content>
-                <Title style = {styles.title}> Cartoon Aids </Title>
-                <Paragraph style = {styles.paragraph}> Cartoon Aids To Help Explain Harassment To Your Child </Paragraph>
+                <Title style = {styles.title}> Workplace Harassment </Title>
+                <Paragraph style = {styles.paragraph}> What is harassment in workplace? </Paragraph>
+            </Card.Content>
+          </Card>
+        </TouchableOpacity>
+      </View>
+      
+      <View style={styles.card}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('CyberHarassment')}  style={styles.appButtonContainer}>
+          <Card style = {styles.container2}>
+            <Card.Content>
+                <Title style = {styles.title}> Cyber Harassment </Title>
+                <Paragraph style = {styles.paragraph}> What is Cyber Harassment? </Paragraph>
             </Card.Content>
           </Card>
         </TouchableOpacity>

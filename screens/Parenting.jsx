@@ -7,16 +7,27 @@ import { Text, View } from '../components/Themed';
 
 import MyComponent from '../components/helplineCard';
 
-export default function Awareness( navigation: { navigate: (arg0: string) => void; } ) {
+export default function Parenting( navigation ) {
   return (
     <View style={styles.container}>
 
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('NotFound')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('SignsOfHarassment')}  style={styles.appButtonContainer}>
           <Card style = {styles.container2}>
             <Card.Content>
-                <Title style = {styles.title}> Sexual Harassment </Title>
-                <Paragraph style = {styles.paragraph}> Last Post: 1 Hour Ago </Paragraph>
+                <Title style = {styles.title}> Signs Of Harassment </Title>
+                <Paragraph style = {styles.paragraph}> Signs In Your Children That May Indicate Harassment </Paragraph>
+            </Card.Content>
+          </Card>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.card}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('TalkingToYourChild')}  style={styles.appButtonContainer}>
+          <Card style = {styles.container2}>
+            <Card.Content>
+                <Title style = {styles.title}> Talking To Your Child </Title>
+                <Paragraph style = {styles.paragraph}> Talking To Your Child About Harassment </Paragraph>
             </Card.Content>
           </Card>
         </TouchableOpacity>
@@ -26,19 +37,8 @@ export default function Awareness( navigation: { navigate: (arg0: string) => voi
         <TouchableOpacity onPress={() => navigation.navigation.navigate('NotFound')}  style={styles.appButtonContainer}>
           <Card style = {styles.container2}>
             <Card.Content>
-                <Title style = {styles.title}> Workplace Harassment </Title>
-                <Paragraph style = {styles.paragraph}> Last Post: 1 Hour Ago </Paragraph>
-            </Card.Content>
-          </Card>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('NotFound')}  style={styles.appButtonContainer}>
-          <Card style = {styles.container2}>
-            <Card.Content>
-                <Title style = {styles.title}> Physical Abuse </Title>
-                <Paragraph style = {styles.paragraph}> Last Post: 1 Hour Ago </Paragraph>
+                <Title style = {styles.title}> Cartoon Aids </Title>
+                <Paragraph style = {styles.paragraph}> Cartoon Aids To Help Explain Harassment To Your Child </Paragraph>
             </Card.Content>
           </Card>
         </TouchableOpacity>

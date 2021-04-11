@@ -5,7 +5,7 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 import MyComponent from '../components/helplineCard';
-import Lawyers from '../screens/Lawyers';
+import Lawyers from './Lawyers';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -13,7 +13,7 @@ import { LawyerList } from '../types';
 
 
 
-export default function TabTwoScreen( navigation: { navigate: (arg0: string) => void; } ) {
+export default function TabTwoScreen( navigation ) {
   return (
     <View style={styles.container}>
       <View style={styles.card}>

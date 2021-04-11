@@ -7,9 +7,8 @@ import { Text, View } from '../components/Themed';
 import DisplayAnImage from '../components/AddImage'
 
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
-import { relative } from 'node:path';
 
-export default function TabOneScreen( navigation: { navigate: (arg0: string) => void; } ) {
+export default function TabOneScreen( navigation ) {
   const [SOSText, setSOSText] = useState("SOS");
 
   let state = {

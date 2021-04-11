@@ -7,49 +7,49 @@ import { Text, View } from '../components/Themed';
 
 import MyComponent from '../components/helplineCard';
 
-export default function Awareness( navigation: { navigate: (arg0: string) => void; } ) {
+export default function Laws( navigation ) {
   return (
     <View style={styles.container}>
 
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('Harassment')}  style={styles.appButtonContainer}>
-          <Card style = {styles.container2}>
-            <Card.Content>
-                <Title style = {styles.title}> Harassment </Title>
-                <Paragraph style = {styles.paragraph}> What does Harassment Look Like? </Paragraph>
-            </Card.Content>
-          </Card>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('SexualHarassment')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('SexualHarassmentLaw')}  style={styles.appButtonContainer}>
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Sexual Harassment </Title>
-                <Paragraph style = {styles.paragraph}> What does Sexual Harassment Look Like? </Paragraph>
+                <Paragraph style = {styles.paragraph}> Laws Related To Sexual Harassment In Women </Paragraph>
             </Card.Content>
           </Card>
         </TouchableOpacity>
       </View>
 
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('WorkplaceHarassment')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Workplace')}  style={styles.appButtonContainer}>
           <Card style = {styles.container2}>
             <Card.Content>
-                <Title style = {styles.title}> Workplace Harassment </Title>
-                <Paragraph style = {styles.paragraph}> What is harassment in workplace? </Paragraph>
+                <Title style = {styles.title}> Workplace </Title>
+                <Paragraph style = {styles.paragraph}> Harassment Of Women At The Workplace </Paragraph>
             </Card.Content>
           </Card>
         </TouchableOpacity>
       </View>
-      
+
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('CyberHarassment')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Rape')}  style={styles.appButtonContainer}>
           <Card style = {styles.container2}>
             <Card.Content>
-                <Title style = {styles.title}> Cyber Harassment </Title>
-                <Paragraph style = {styles.paragraph}> What is Cyber Harassment? </Paragraph>
+                <Title style = {styles.title}> Rape </Title>
+                <Paragraph style = {styles.paragraph}> Information On Rape In The Pakistan Penal Code </Paragraph>
+            </Card.Content>
+          </Card>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.card}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Children')}  style={styles.appButtonContainer}>
+          <Card style = {styles.container2}>
+            <Card.Content>
+                <Title style = {styles.title}> Children </Title>
+                <Paragraph style = {styles.paragraph}> Laws For The Protection Of Childrens </Paragraph>
             </Card.Content>
           </Card>
         </TouchableOpacity>

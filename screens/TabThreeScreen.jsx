@@ -7,7 +7,7 @@ import { Text, View } from '../components/Themed';
 import MyComponent from '../components/helplineCard';
 import { Checkbox } from 'react-native-paper';
 
-export default function TabTwoScreen( navigation: { navigate: (arg0: string) => void; } ) {
+export default function TabTwoScreen( navigation ) {
   return (
     <View style={styles.container}>
       
