@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     inside:{
-        top: "10%",
+        top: "10%"
     },
     LoginText: {
         fontWeight: "bold",
