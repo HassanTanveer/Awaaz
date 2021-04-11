@@ -11,6 +11,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
+import TabFourScreen from '../screens/TabFourScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Lawyers from '../screens/Lawyers';
 import Therapists from '../screens/Therapists';
@@ -30,18 +31,30 @@ import Children from '../screens/Children';
 import SupportGroups from '../screens/SupportGroups';
 import WorkplaceHarassment from '../screens/WorkplaceHarassment';
 import CyberHarassment from '../screens/CyberHarassment';
+import Login from '../screens/login';
+import firebase from "firebase/app";
+require('firebase/auth')
 
-import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList, TabFourParamList } from '../types';
 
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
+  const initialroute = "SOS";
+
+  let isLoggedIn = false;
+
+  firebase.auth().onAuthStateChanged(user => {
+    if(user){
+      isLoggedIn = true;
+    }
+  }) 
 
   return (
     <BottomTab.Navigator
-      initialRouteName="SOS"
+      initialRouteName={initialroute}
       tabBarOptions={{
         activeTintColor: "#790C5A",
         inactiveTintColor: "#b3b3cc",
@@ -79,6 +92,20 @@ export default function BottomTabNavigator() {
       <BottomTab.Screen
         name="Learn"
         component={TabTwoNavigator}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            let iconName;
+            let shade;
+            iconName = `bulb${focused ? '' : '-outline'}`;
+            shade = `${focused ? '#790C5A' : '#b3b3cc'}`;
+            return <Icon name={iconName} size={25} color={shade} />;
+          },
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Profile"
+        component={TabFourNavigator}
         options={{
           tabBarIcon: ({ focused }) => {
             let iconName;
@@ -481,6 +508,60 @@ function TabThreeNavigator() {
         }}
       />
     </TabThreeStack.Navigator>
+  );
+}
+
+const TabFourStack = createStackNavigator<TabFourParamList>();
+
+function TabFourNavigator() {
+  return (
+    <TabFourStack.Navigator>
+      <TabFourStack.Screen
+        name="TabFourScreen"
+        component={TabFourScreen}
+        options={{ 
+          title: 'Profile',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabFourStack.Screen
+        name="Notfound"
+        component={NotFoundScreen}
+        options={{ 
+          title: 'Notfound',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+      <TabFourStack.Screen
+        name="Login"
+        component={Login}
+        options={{ 
+          title: 'Login',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+    </TabFourStack.Navigator>
   );
 }
 

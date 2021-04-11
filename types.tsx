@@ -7,6 +7,7 @@ export type BottomTabParamList = {
   SOS: undefined;
   Learn: undefined;
   Help: undefined;
+  Profile: undefined;
 };
 
 export type TabOneParamList = {
@@ -19,6 +20,10 @@ export type TabTwoParamList = {
 
 export type TabThreeParamList = {
   TabThreeScreen: undefined;
+};
+
+export type TabFourParamList = {
+  TabFourScreen: undefined;
 };
 
 export type LawyerList = {

@@ -22,6 +22,11 @@ export default {
               TabThreeScreen: 'Learn',
             },
           },
+          Profile: {
+            screens: {
+              Login: 'Login',
+            }
+          }
         },
       },
       NotFound: '*',
