@@ -18,6 +18,7 @@ export default function TabFourScreen( navigation: { navigate: (arg0: string) =>
         try {
           const result = await Google.logInAsync({
             androidClientId: "80984142514-pk1j1cvjblus6hc4fmafu9obpfrj7kb2.apps.googleusercontent.com",
+            iosClientId: "80984142514-97lhm495snddr3ab4agblm3u9j180cjl.apps.googleusercontent.com",
             scopes: ['profile', 'email'],
           });
       
@@ -81,9 +82,9 @@ const styles = StyleSheet.create({
     },
     LoginText: {
         fontWeight: "bold",
-        fontSize: 20,
+        fontSize: 22,
         alignSelf: "center",
-        marginBottom: 10
+        marginBottom: 10,
     },
     
     GooglePlusStyle: {
