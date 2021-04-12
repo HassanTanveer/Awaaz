@@ -1,26 +1,22 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 
-import { Button, StyleSheet, TouchableOpacity, TouchableHighlight, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import DisplayAnImage from '../components/AddImage'
 import * as Google from 'expo-google-app-auth';
 import firebase from "firebase/app";
+// eslint-disable-next-line no-undef
 require('firebase/auth')
+// eslint-disable-next-line no-undef
 require('firebase/database')
 
 import { LogBox } from 'react-native';
 
 LogBox.ignoreLogs(['Setting a timer']);
-import Login from "./login"
 export default function TabFourScreen( navigation ) {
 
     const [isLoggedIn, SetisLoggedIn] = useState("false");
-
-    let state = {
-        textValue: 'false'
-    }
+	const [currUser, SetcurrUser] = useState("Guest")
 
     let onSignIn = (googleUser) => {
         // We need to register an Observer on Firebase Auth to make sure auth is initialized.
@@ -45,18 +41,10 @@ export default function TabFourScreen( navigation ) {
                             profile_picture: result.additionalUserInfo.profile.picture,
                             first_name: result.additionalUserInfo.profile.given_name,
                             last_name: result.additionalUserInfo.profile.family_name,
-                            
                         })
                 })
                 .catch((error) => {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // The email of the user's account used.
-                var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
-                // ...
+					console.error(error)
                 });
           } else {
             console.log('User already signed-in Firebase.');
@@ -105,19 +93,32 @@ export default function TabFourScreen( navigation ) {
 
     if(isLoggedIn == "true"){
         return (
-            <View>
-
+            <View style={styles.MainContainer}>
+				<View style={styles.inside}>
+                <Text style={styles.LogOutText}>Hello, {firebase.auth().currentUser.displayName}!</Text>
+                <TouchableOpacity style={styles.GooglePlusStyle} activeOpacity={1}
+                onPress={() => {
+					firebase.auth().signOut();
+                    SetisLoggedIn("false")
+					SetcurrUser("Guest")
+					}}>
+        
+                    <Text style={styles.TextStyle}> Sign Out</Text>
+            
+                </TouchableOpacity>
+                </View>
             </View>
         )
     } else {
         return (
             <View style={styles.MainContainer}>
                 <View style={styles.inside}>
-                <Text style={styles.LoginText}>Hello, Guest!</Text>
+                <Text style={styles.LoginText}>Hello, {currUser}!</Text>
                 <TouchableOpacity style={styles.GooglePlusStyle} activeOpacity={1}
                 onPress={() => signInWithGoogleAsync()}>
             
                     <Image 
+                    // eslint-disable-next-line no-undef
                     source={require('../images/Google.png')} 
                     style={styles.ImageIconStyle} 
                     />
@@ -148,10 +149,18 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginBottom: 10,
     },
+
+	LogOutText: {
+        fontWeight: "bold",
+        fontSize: 22,
+        marginBottom: 10,
+		
+    },
     
     GooglePlusStyle: {
         flexDirection: 'row',
         alignItems: 'center',
+		justifyContent: 'center',
         backgroundColor: '#FFFF',
         borderWidth: .5,
         borderColor: "#FFFF",
@@ -165,7 +174,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.30,
         shadowRadius: 4.65,
-
         elevation: 8,
    },
    

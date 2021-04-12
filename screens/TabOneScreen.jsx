@@ -1,22 +1,26 @@
+/* eslint-disable no-undef */
 import React, { useState } from "react";
-
-import { Button, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import * as SMS from 'expo-sms'
 import { Text, View } from '../components/Themed';
 import DisplayAnImage from '../components/AddImage'
 
-import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
 
 export default function TabOneScreen( navigation ) {
   const [SOSText, setSOSText] = useState("SOS");
-
-  let state = {
-    textValue: 'Change me'
-  }
   let onPressButton = () => {
     if(SOSText == "SOS"){
         setSOSText("Sent");
+        SMS.isAvailableAsync()
+          .then(() => {
+            SMS.sendSMSAsync(
+              ['+923244292276'],
+              'My sample HelloWorld message',
+            )
+            .then(res => {
+              console.log(res)
+            })
+          })
     }
     else{
       setSOSText("SOS");
@@ -30,7 +34,7 @@ export default function TabOneScreen( navigation ) {
       
       <View style={styles.bigbox}>
         <View style={styles.bigInner}>
-          <TouchableOpacity onPress={() => navigation.navigation.navigate('Notfound')}  style={styles.appButtonContainer}>
+          <TouchableOpacity onPress={() => onPressButton()}  style={styles.appButtonContainer}>
             <Text style={stylebox}>{SOSText}</Text>
             <Text style={styles.textSubtitle}>Notify police and your emergency contacts</Text>  
           </TouchableOpacity>

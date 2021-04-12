@@ -1,13 +1,9 @@
+/* eslint-disable react/prop-types */
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 
-
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
@@ -32,29 +28,17 @@ import SupportGroups from '../screens/SupportGroups';
 import WorkplaceHarassment from '../screens/WorkplaceHarassment';
 import CyberHarassment from '../screens/CyberHarassment';
 import Login from '../screens/login';
-import firebase from "firebase/app";
+
+// eslint-disable-next-line no-undef
 require('firebase/auth')
-
-import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList, TabFourParamList } from '../types';
-
 
 const BottomTab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
-  const initialroute = "SOS";
-
-  let isLoggedIn = false;
-
-  firebase.auth().onAuthStateChanged(user => {
-    if(user){
-      isLoggedIn = true;
-    }
-  }) 
 
   return (
     <BottomTab.Navigator
-      initialRouteName={initialroute}
+      initialRouteName="SOS"
       tabBarOptions={{
         activeTintColor: "#790C5A",
         inactiveTintColor: "#b3b3cc",
@@ -65,6 +49,7 @@ export default function BottomTabNavigator() {
         name="SOS"
         component={TabOneNavigator}
         options={{
+          // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused }) => {
             let iconName;
             let shade;
@@ -79,7 +64,8 @@ export default function BottomTabNavigator() {
         name="Help"
         component={TabThreeNavigator}
         options={{
-          tabBarIcon: ({ focused }) => {
+          // eslint-disable-next-line react/display-name
+          tabBarIcon: ( {focused} ) => {
             let iconName;
             let shade;
             iconName = `shield${focused ? '' : '-outline'}`;
@@ -93,7 +79,8 @@ export default function BottomTabNavigator() {
         name="Learn"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ focused }) => {
+          // eslint-disable-next-line react/display-name
+          tabBarIcon: ( {focused} ) => {
             let iconName;
             let shade;
             iconName = `bulb${focused ? '' : '-outline'}`;
@@ -107,6 +94,7 @@ export default function BottomTabNavigator() {
         name="Profile"
         component={TabFourNavigator}
         options={{
+          // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused }) => {
             let iconName;
             let shade;
@@ -565,16 +553,3 @@ function TabFourNavigator() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  card: {
-    margin: 5,
-    shadowOffset: { width: 0, height: 1 },
-    shadowColor: '#F1D4D4',
-    shadowOpacity: 100,
-    shadowRadius: 4,
-    elevation: 3
-  }
-});
