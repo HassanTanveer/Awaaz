@@ -4,23 +4,42 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import * as SMS from 'expo-sms'
 import { Text, View } from '../components/Themed';
 import DisplayAnImage from '../components/AddImage'
-
+import * as Location from 'expo-location';
 
 export default function TabOneScreen( navigation ) {
+  // eslint-disable-next-line no-unused-vars
+  const [location, setLocation] = useState(null);
   const [SOSText, setSOSText] = useState("SOS");
   let onPressButton = () => {
     if(SOSText == "SOS"){
-        setSOSText("Sent");
-        SMS.isAvailableAsync()
+        setSOSText("Sending...");
+
+        (async () => {
+          let { status } = await Location.requestPermissionsAsync();
+          if (status !== 'granted') {
+            console.log('Permission to access location was denied');
+            return;
+          }
+    
+          let location = await Location.getCurrentPositionAsync({});
+          setLocation(location)
+
+          let google_maps_link = `https://maps.google.com/?q=${location.coords.latitude},${location.coords.longitude}`;
+          console.log(google_maps_link)
+          SMS.isAvailableAsync()
           .then(() => {
             SMS.sendSMSAsync(
               ['+923244292276'],
-              'My sample HelloWorld message',
+              '1This is a test SOS message for my application.\n' + 
+              `My location is: ${google_maps_link}`,
             )
-            .then(res => {
-              console.log(res)
+            .then(() => {
+              setTimeout(function(){ setSOSText('Sent') }, 3000);
             })
           })
+        })();
+        
+        
     }
     else{
       setSOSText("SOS");
