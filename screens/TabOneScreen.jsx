@@ -65,8 +65,7 @@ export default function TabOneScreen(navigation) {
 			<View style={styles.bigbox}>
 				<TouchableHighlight
 					onPress={() => onPressButton()}
-					style={styles.bigInner}
-				>
+					style={styles.bigInner}>
 					<View style={styles.appButtonContainer}>
 						<Text style={stylebox}>{SOSText}</Text>
 						<Text style={styles.textSubtitle}>
@@ -81,13 +80,11 @@ export default function TabOneScreen(navigation) {
 					onPress={() => navigation.navigation.navigate("Helplines")}
 					style={styles.inner}
 					activeOpacity={0.6}
-					underlayColor='#DDDDDD'
-				>
+					underlayColor='#DDDDDD'>
 					<View style={styles.appButtonContainer}>
 						<Text style={styles.textOne}> Helplines </Text>
 						<DisplayAnImage
-							image={require("../icons/2x/call.png")}
-						></DisplayAnImage>
+							image={require("../icons/2x/call.png")}></DisplayAnImage>
 					</View>
 				</TouchableHighlight>
 			</View>
@@ -99,27 +96,25 @@ export default function TabOneScreen(navigation) {
 					}}
 					style={styles.inner}
 					activeOpacity={0.6}
-					underlayColor='#DDDDDD'
-				>
+					underlayColor='#DDDDDD'>
 					<View style={styles.appButtonContainer}>
 						<Text style={styles.textOne}>Alarm</Text>
 						<DisplayAnImage
-							image={require("../icons/2x/alarm.png")}
-						></DisplayAnImage>
+							image={require("../icons/2x/alarm.png")}></DisplayAnImage>
 					</View>
 				</TouchableHighlight>
 			</View>
 
 			<View style={styles.box}>
-				<TouchableHighlight onPress={() => {}} 
+				<TouchableHighlight
+					onPress={() => {}}
 					style={styles.inner}
 					activeOpacity={0.6}
 					underlayColor='#DDDDDD'>
 					<View style={styles.appButtonContainer}>
 						<Text style={styles.textOne}>Record</Text>
 						<DisplayAnImage
-							image={require("../icons/2x/record.png")}
-						></DisplayAnImage>
+							image={require("../icons/2x/record.png")}></DisplayAnImage>
 					</View>
 				</TouchableHighlight>
 			</View>
