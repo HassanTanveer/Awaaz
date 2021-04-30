@@ -2,10 +2,8 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-import MyComponent from '../components/helplineCard';
 
 export default function Harassments() {
   return (
