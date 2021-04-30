@@ -1,41 +1,54 @@
-import * as React from 'react';
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+import { View } from '../components/Themed';
 
 import CallCard from '../components/callCard'
-import { call } from 'react-native-reanimated';
+
+// eslint-disable-next-line no-undef
+import firebase from "firebase/app";
+// eslint-disable-next-line no-undef
+require('firebase/auth')
+// eslint-disable-next-line no-undef
+require('firebase/firestore')
 
 export default function Lawyers() {
+
+  let db = firebase.firestore();
+  const [LawyerInfo, setLawyerInfo] = useState([{"empty": "yes"}]);
+  
+  useEffect(() => {
+    let data = db.collection("lawyers")
+    data.get()
+      .then((res) => {
+        res.docs.map(doc => {
+          if(LawyerInfo.length < 7){
+            setLawyerInfo(prev => [...prev, doc.data()])
+          }
+        })
+      })
+  }, []);
+  
   return (
     <View style={styles.container}>
-      <View style={styles.card}>
-        <CallCard 
-        name="Lawyer 1" 
-        content="abcdef"
-        number="1234567"
-        secondButton="Email"
-        email="abc@def.com"
-        ></CallCard> 
-      </View>
-
-      <View style={styles.card}>
-        <CallCard 
-        name="Lawyer 1" 
-        content="abcdef"
-        number="1234567"
-        ></CallCard> 
-      </View>
-
-      <View style={styles.card}>
-        <CallCard 
-        name="Lawyer 1" 
-        content="abcdef"
-        number="1234567"
-        ></CallCard> 
-      </View>
-
+      {
+        LawyerInfo.map((text, index) => {
+          return(
+            <View key={index}> 
+              <View style={styles.card}>
+                <CallCard 
+                name={text.name}
+                content={text.content}
+                number={text.number}
+                secondButton="Email"
+                email={text.email}
+                empty={text.empty}
+                ></CallCard> 
+              </View>
+            </View>
+          )       
+        })
+      }
     </View>
   );
 }
