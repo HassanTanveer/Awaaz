@@ -13,9 +13,12 @@ const CallCard = (props) => (
 	<Card style={styles.container}>
 		<Card.Content>
 			<Title style={styles.title}>{props.name}</Title>
+			<Paragraph>{props.number}</Paragraph>
 			<Paragraph>{props.content}</Paragraph>
 		</Card.Content>
 		
+        <Card.Cover source = {props.image}  style={styles.image}/>
+
 		<Card.Actions>
 			<Button
 				onPress={() => {
@@ -44,7 +47,7 @@ const CallCard = (props) => (
 
 const styles = StyleSheet.create({
 	container: {
-		height: 140,
+		height: 170,
 		shadowOffset: { width: 0, height: 1 },
 		shadowColor: "#F1D4D4",
 		shadowOpacity: 100,
@@ -59,12 +62,12 @@ const styles = StyleSheet.create({
 		display: "none",
 	},
 	image: {
-		backgroundColor: "#FFFF",
-		marginLeft: "85%",
-		marginTop: -40,
-		width: 48,
-		height: 48,
-	},
+        backgroundColor: '#FFFF',
+        marginLeft: "85%",
+        marginTop: -40,        
+        width: 48,
+        height: 48
+    },
 });
 
 export default CallCard;

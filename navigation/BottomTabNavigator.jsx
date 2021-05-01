@@ -28,6 +28,7 @@ import SupportGroups from '../screens/SupportGroups';
 import WorkplaceHarassment from '../screens/WorkplaceHarassment';
 import CyberHarassment from '../screens/CyberHarassment';
 import Login from '../screens/login';
+import addEmergencyContact from '../screens/EmergencyContacts';
 
 // eslint-disable-next-line no-undef
 require('firebase/auth')
@@ -539,6 +540,22 @@ function TabFourNavigator() {
         component={Login}
         options={{ 
           title: 'Login',
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        }}
+      />
+
+    <TabFourStack.Screen
+        name="addEmergencyContact"
+        component={addEmergencyContact}
+        options={{ 
+          title: 'Emergency Contacts',
           headerStyle: {
           backgroundColor: '#FFF',
           },

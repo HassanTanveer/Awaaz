@@ -3,35 +3,35 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import CallCard from '../components/callCard'
 
-import MyComponent from '../components/helplineCard';
 
 export default function Helplines() {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <MyComponent 
+        <CallCard 
           name="Punjab Women" 
-          content="abcdef"
+          content="Anti-Harassment and Violence"
+          number="1043"
           image = {require('../images/punjabw.png')}
-        // firstButton = "call"
-        ></MyComponent> 
+        ></CallCard> 
       </View>
 
       <View style={styles.card}>
-        <MyComponent 
-          name="Punjab Women"
-          content="abcdef"
-          image = {require('../images/punjabw.png')}
-        ></MyComponent> 
+        <CallCard 
+          name="Madadgar National" 
+          content="Children and Women Harassment"
+          number="1098"
+        ></CallCard> 
       </View>
 
       <View style={styles.card}>
-        <MyComponent 
-          name="Punjab Women"
-          content="abcdef"
-          image = {require('../images/punjabw.png')}
-        ></MyComponent> 
+        <CallCard 
+          name="Sahil" 
+          content="Children Harassment"
+          number="0800-13518"
+        ></CallCard> 
       </View>
 
     </View>

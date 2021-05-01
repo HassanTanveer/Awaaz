@@ -39,7 +39,7 @@ export default function Harassments() {
                 Description.map((text, index) => {
                   return(
                     <View key={index}> 
-                      <Text>{text.desc}</Text>
+                      <Text style={styles.content}>{text.desc}</Text>
                       <Text> </Text>
                     </View>
                   )       
@@ -59,6 +59,9 @@ export default function Harassments() {
 }
 
 const styles = StyleSheet.create({
+  content: {
+    maxWidth: "80%",
+  },
   container: {
     flex: 1,
   },

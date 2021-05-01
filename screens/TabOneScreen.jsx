@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, TouchableHighlight } from "react-native";
 import * as SMS from "expo-sms";
 import { Text, View } from "../components/Themed";
@@ -7,17 +7,61 @@ import DisplayAnImage from "../components/AddImage";
 import * as Location from "expo-location";
 import { Audio } from "expo-av";
 
+import firebase from "firebase/app";
+// eslint-disable-next-line no-undef
+require("firebase/auth");
+// eslint-disable-next-line no-undef
+require("firebase/database");
+
+
 export default function TabOneScreen(navigation) {
 	// eslint-disable-next-line no-unused-vars
 	const [location, setLocation] = useState(null);
 	const [SOSText, setSOSText] = useState("SOS");
 	// eslint-disable-next-line no-unused-vars
-	const [sound, setSound] = React.useState();
+	const [sound, setSound] = React.useState(undefined);
+	const [number, setNumber] = React.useState();
+	const [recording, setRecording] = React.useState();
+	const [recordName, setRecordName] = React.useState("Record");
+	const [imageURL, setImage] = React.useState("../icons/2x/record.png")
+
+	useEffect(() => {
+
+		let f = new Promise(function(myResolve, myReject) {
+			let result = firebase.auth().currentUser;
+			if(result !== null){
+				myResolve(result); // when successful
+			}
+			else{
+				myReject("error")
+			}
+		});
+
+		f.then((result) => {
+				firebase
+					.database()
+					.ref("/users" + result.uid)
+					.get()
+					.then((snapshot) => {
+						if (snapshot.exists()) {
+							setNumber(snapshot.val().emerygency)
+							console.log(snapshot.val().emerygency)
+						} else {
+							console.log("No data available");
+						}
+						}).catch((error) => {
+						console.error(error);
+						});
+		})
+		.catch(err => console.log(err))
+
+	}, []);
 
 	let onPressButton = () => {
+
 		if (SOSText == "SOS") {
 			setSOSText("Sending...");
-
+		
 			(async () => {
 				let { status } = await Location.requestPermissionsAsync();
 				if (status !== "granted") {
@@ -32,8 +76,8 @@ export default function TabOneScreen(navigation) {
 				console.log(google_maps_link);
 				SMS.isAvailableAsync().then(() => {
 					SMS.sendSMSAsync(
-						["+923244292276"],
-						"1This is a test SOS message for my application.\n" +
+						[number],
+						"This is a test SOS message for my application.\n" +
 							`My location is: ${google_maps_link}`
 					).then(() => {
 						setTimeout(function () {
@@ -59,6 +103,41 @@ export default function TabOneScreen(navigation) {
 		console.log("Playing Sound");
 		await sound.playAsync();
 	}
+
+	async function stopSound() {
+		setSound(undefined);
+		await sound.stopAsync();
+	}
+
+	async function startRecording() {
+		try {
+		console.log('Requesting permissions..');
+		await Audio.requestPermissionsAsync();
+		await Audio.setAudioModeAsync({
+			allowsRecordingIOS: true,
+			playsInSilentModeIOS: true,
+		}); 
+		console.log('Starting recording..');
+		const recording = new Audio.Recording();
+		await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
+		await recording.startAsync(); 
+		setRecording(recording);
+		setRecordName("Recording...");
+		console.log('Recording started');
+		} catch (err) {
+		console.error('Failed to start recording', err);
+		}
+  }
+
+  async function stopRecording() {
+    console.log('Stopping recording..');
+    setRecording(undefined);
+	setRecordName("Record");
+    await recording.stopAndUnloadAsync();
+    const uri = recording.getURI(); 
+    console.log('Recording stopped and stored at', uri);
+	alert("Recording Saved.")
+  }
 
 	return (
 		<View style={styles.container}>
@@ -92,7 +171,12 @@ export default function TabOneScreen(navigation) {
 			<View style={styles.box}>
 				<TouchableHighlight
 					onPress={() => {
-						playSound();
+						if(sound) {
+							stopSound()
+						}
+						else{
+							playSound();
+						}
 					}}
 					style={styles.inner}
 					activeOpacity={0.6}
@@ -107,14 +191,29 @@ export default function TabOneScreen(navigation) {
 
 			<View style={styles.box}>
 				<TouchableHighlight
-					onPress={() => {}}
+					onPress={() => {
+						if(recording){
+							stopRecording()
+						}
+						else{
+							startRecording()
+						}
+					}}
 					style={styles.inner}
 					activeOpacity={0.6}
 					underlayColor='#DDDDDD'>
 					<View style={styles.appButtonContainer}>
-						<Text style={styles.textOne}>Record</Text>
-						<DisplayAnImage
-							image={require("../icons/2x/record.png")}></DisplayAnImage>
+						<Text style={styles.textOne}>{recordName}</Text>
+						{recording ? 
+							<DisplayAnImage
+								image={require("../icons/2x/stop.png")}>
+							</DisplayAnImage>
+							:
+							<DisplayAnImage
+								image={require("../icons/2x/record.png")}>
+							</DisplayAnImage>
+						}
+						
 					</View>
 				</TouchableHighlight>
 			</View>

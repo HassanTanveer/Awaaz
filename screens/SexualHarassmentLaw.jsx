@@ -33,6 +33,8 @@ export default function SexualHarassmentLaw() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center"
+  
   },
   card: {
     margin: 5,
@@ -40,7 +42,8 @@ const styles = StyleSheet.create({
     shadowColor: '#F1D4D4',
     shadowOpacity: 100,
     shadowRadius: 4,
-    elevation: 3
+    elevation: 3,
+    width: "90%",
   },
   container2: {
     // height: 112,
