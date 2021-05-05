@@ -135,7 +135,7 @@ export default function TabOneScreen(navigation) {
 			);
 			await recording.startAsync();
 			setRecording(recording);
-			setRecordName("Recordings");
+			setRecordName("Recording");
 			console.log("Recording started");
 		} catch (err) {
 			console.error("Failed to start recording", err);
