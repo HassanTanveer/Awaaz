@@ -94,35 +94,6 @@ const styles = StyleSheet.create({
       marginTop: -40,        
       width: 48,
       height: 48
-  },
-  
-  // container: {
-  //   flex: 1,
-  // },
-  // card: {
-  //   margin: 5,
-  //   shadowOffset: { width: 0, height: 1 },
-  //   shadowColor: '#F1D4D4',
-  //   shadowOpacity: 100,
-  //   shadowRadius: 4,
-  //   elevation: 3
-  // },
-  // container: {
-  //   // height: 112,
-  //   // height: 100,
-  //   shadowOffset: { width: 0, height: 1 },
-  //   shadowColor: '#F1D4D4',
-  //   shadowOpacity: 100,
-  //   shadowRadius: 4,
-  //   elevation: 3,
-  // },
-  // title: {
-  //   fontSize: 21,
-  //   fontWeight: 'bold',
-  //   textAlign: 'center'
-  // },
-  // paragraph: {
-  //   textAlign: 'center'
-  // }
+  }
 });
 
