@@ -1,17 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+import { View } from '../components/Themed';
 
 import MyComponent from '../components/helplineCard';
-import Lawyers from './Lawyers';
-
-import { createStackNavigator } from '@react-navigation/stack';
-
-import { LawyerList } from '../types';
-
-
 
 export default function TabTwoScreen( navigation ) {
   return (

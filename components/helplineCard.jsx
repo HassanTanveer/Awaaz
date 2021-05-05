@@ -1,13 +1,15 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Button, Card, Title } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
+import { Text } from "../components/Themed";
+
 
 const MyComponent = (props) => (
-    
     <Card style = {styles.container}>
         <Card.Content>
             <Title style = {styles.title}>{props.name}</Title>
-            <Paragraph>{props.content}</Paragraph>
+            <Text>{props.content}</Text>
         </Card.Content>
         <Card.Cover source = {props.image}  style={styles.image}/>
         <Card.Actions>
@@ -27,8 +29,11 @@ const styles = StyleSheet.create({
         elevation: 3
     },
     title: {
+        fontFamily: 'Montserrat_700Bold',
         fontSize: 21,
-        fontWeight: 'bold'
+    },
+    content: {
+        fontFamily: 'Montserrat_400Regular'
     },
     none: {
         display: 'none'

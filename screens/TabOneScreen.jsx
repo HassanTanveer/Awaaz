@@ -6,6 +6,13 @@ import { Text, View } from "../components/Themed";
 import DisplayAnImage from "../components/AddImage";
 import * as Location from "expo-location";
 import { Audio } from "expo-av";
+import {
+	useFonts,
+	Montserrat_400Regular,
+	Montserrat_700Bold,
+	Montserrat_300Light,
+} from "../node_modules/@expo-google-fonts/montserrat";
+import AppLoading from "expo-app-loading";
 
 import firebase from "firebase/app";
 // eslint-disable-next-line no-undef
@@ -13,55 +20,35 @@ require("firebase/auth");
 // eslint-disable-next-line no-undef
 require("firebase/database");
 
-
 export default function TabOneScreen(navigation) {
+
+	let [fontsLoaded] = useFonts({
+		Montserrat_400Regular,
+		Montserrat_700Bold,
+		Montserrat_300Light,
+	});
+
 	// eslint-disable-next-line no-unused-vars
 	const [location, setLocation] = useState(null);
 	const [SOSText, setSOSText] = useState("SOS");
-	// eslint-disable-next-line no-unused-vars
 	const [sound, setSound] = React.useState(undefined);
+	const [soundName, setSoundName] = React.useState("Siren");
 	const [number, setNumber] = React.useState();
 	const [recording, setRecording] = React.useState();
 	const [recordName, setRecordName] = React.useState("Record");
-	const [imageURL, setImage] = React.useState("../icons/2x/record.png")
+	const [subtitle, setSubtile] = React.useState("Notify your emergency contact");
 
-	useEffect(() => {
-
+	let onPressButton = () => {
 		let f = new Promise(function(myResolve, myReject) {
 			let result = firebase.auth().currentUser;
 			if(result !== null){
 				myResolve(result); // when successful
 			}
-			else{
-				myReject("error")
-			}
 		});
-
-		f.then((result) => {
-				firebase
-					.database()
-					.ref("/users" + result.uid)
-					.get()
-					.then((snapshot) => {
-						if (snapshot.exists()) {
-							setNumber(snapshot.val().emerygency)
-							console.log(snapshot.val().emerygency)
-						} else {
-							console.log("No data available");
-						}
-						}).catch((error) => {
-						console.error(error);
-						});
-		})
-		.catch(err => console.log(err))
-
-	}, []);
-
-	let onPressButton = () => {
 
 		if (SOSText == "SOS") {
 			setSOSText("Sending...");
-		
+
 			(async () => {
 				let { status } = await Location.requestPermissionsAsync();
 				if (status !== "granted") {
@@ -71,23 +58,45 @@ export default function TabOneScreen(navigation) {
 
 				let location = await Location.getCurrentPositionAsync({});
 				setLocation(location);
-
-				let google_maps_link = `https://maps.google.com/?q=${location.coords.latitude},${location.coords.longitude}`;
-				console.log(google_maps_link);
-				SMS.isAvailableAsync().then(() => {
-					SMS.sendSMSAsync(
-						[number],
-						"This is a test SOS message for my application.\n" +
-							`My location is: ${google_maps_link}`
-					).then(() => {
-						setTimeout(function () {
-							setSOSText("Sent");
-						}, 3000);
+				
+				f.then((result) => {
+					firebase
+					.database()
+					.ref("/users" + result.uid)
+					.get()
+					.then((snapshot) => {
+						if (snapshot.exists()) {
+							setNumber(snapshot.val().emerygency);
+							let google_maps_link = `https://maps.google.com/?q=${location.coords.latitude},${location.coords.longitude}`;
+							// console.log(google_maps_link);
+							SMS.isAvailableAsync().then(() => {
+								SMS.sendSMSAsync(
+									[snapshot.val().emerygency],
+									"This is a test SOS message for my application.\n" +
+										`My location is: ${google_maps_link}`
+								)
+								.then(() => {
+									setTimeout(function () {
+										setSOSText("Sent");
+										setSubtile("")
+									}, 2000);
+								})
+								.catch((err)=>console.log(err))
+							});
+							// console.log(snapshot.val().emerygency);
+						} else {
+							console.log("No data available");
+						}
+					})
+					.catch((error) => {
+						console.error(error);
 					});
-				});
+				})
+				
 			})();
 		} else {
 			setSOSText("SOS");
+			setSubtile("Notify your emergency contact")
 		}
 	};
 
@@ -95,6 +104,7 @@ export default function TabOneScreen(navigation) {
 
 	async function playSound() {
 		console.log("Loading Sound");
+		setSoundName("Playing")
 		const { sound } = await Audio.Sound.createAsync(
 			require("../assets/notes_c.wav")
 		);
@@ -105,54 +115,76 @@ export default function TabOneScreen(navigation) {
 	}
 
 	async function stopSound() {
+		setSoundName("Siren")
 		setSound(undefined);
 		await sound.stopAsync();
 	}
 
 	async function startRecording() {
 		try {
-		console.log('Requesting permissions..');
-		await Audio.requestPermissionsAsync();
-		await Audio.setAudioModeAsync({
-			allowsRecordingIOS: true,
-			playsInSilentModeIOS: true,
-		}); 
-		console.log('Starting recording..');
-		const recording = new Audio.Recording();
-		await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
-		await recording.startAsync(); 
-		setRecording(recording);
-		setRecordName("Recording...");
-		console.log('Recording started');
+			console.log("Requesting permissions..");
+			await Audio.requestPermissionsAsync();
+			await Audio.setAudioModeAsync({
+				allowsRecordingIOS: true,
+				playsInSilentModeIOS: true,
+			});
+			console.log("Starting recording..");
+			const recording = new Audio.Recording();
+			await recording.prepareToRecordAsync(
+				Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
+			);
+			await recording.startAsync();
+			setRecording(recording);
+			setRecordName("Recordings");
+			console.log("Recording started");
 		} catch (err) {
-		console.error('Failed to start recording', err);
+			console.error("Failed to start recording", err);
 		}
-  }
+	}
 
-  async function stopRecording() {
-    console.log('Stopping recording..');
-    setRecording(undefined);
-	setRecordName("Record");
-    await recording.stopAndUnloadAsync();
-    const uri = recording.getURI(); 
-    console.log('Recording stopped and stored at', uri);
-	alert("Recording Saved.")
-  }
+	async function stopRecording() {
+		console.log("Stopping recording..");
+		setRecording(undefined);
+		setRecordName("Record");
+		await recording.stopAndUnloadAsync();
+		const uri = recording.getURI();
+		console.log("Recording stopped and stored at", uri);
+		alert("Recording Saved.");
+	}
 
+	if (!fontsLoaded) {
+		return <AppLoading />;
+	} else {
 	return (
 		<View style={styles.container}>
 			<View style={styles.bigbox}>
 				<TouchableHighlight
 					onPress={() => onPressButton()}
 					style={styles.bigInner}>
+
 					<View style={styles.appButtonContainer}>
 						<Text style={stylebox}>{SOSText}</Text>
 						<Text style={styles.textSubtitle}>
-							Notify police and your emergency contacts
+							{subtitle}
 						</Text>
+						
 					</View>
 				</TouchableHighlight>
 			</View>
+
+			{SOSText == "Sent" ? 
+				<TouchableHighlight 
+					onPress={() => onPressButton()}
+					style={styles.backButton}>
+					<View style={styles.backText}>
+						<Text style={styles.goBack}> 
+							Go back
+						</Text>
+					</View>
+				</TouchableHighlight>
+			:
+				<View></View>
+			}
 
 			<View style={styles.box}>
 				<TouchableHighlight
@@ -171,10 +203,9 @@ export default function TabOneScreen(navigation) {
 			<View style={styles.box}>
 				<TouchableHighlight
 					onPress={() => {
-						if(sound) {
-							stopSound()
-						}
-						else{
+						if (sound) {
+							stopSound();
+						} else {
 							playSound();
 						}
 					}}
@@ -182,7 +213,7 @@ export default function TabOneScreen(navigation) {
 					activeOpacity={0.6}
 					underlayColor='#DDDDDD'>
 					<View style={styles.appButtonContainer}>
-						<Text style={styles.textOne}>Alarm</Text>
+						<Text style={styles.textOne}>{soundName}</Text>
 						<DisplayAnImage
 							image={require("../icons/2x/alarm.png")}></DisplayAnImage>
 					</View>
@@ -192,11 +223,10 @@ export default function TabOneScreen(navigation) {
 			<View style={styles.box}>
 				<TouchableHighlight
 					onPress={() => {
-						if(recording){
-							stopRecording()
-						}
-						else{
-							startRecording()
+						if (recording) {
+							stopRecording();
+						} else {
+							startRecording();
 						}
 					}}
 					style={styles.inner}
@@ -204,24 +234,39 @@ export default function TabOneScreen(navigation) {
 					underlayColor='#DDDDDD'>
 					<View style={styles.appButtonContainer}>
 						<Text style={styles.textOne}>{recordName}</Text>
-						{recording ? 
+						{recording ? (
 							<DisplayAnImage
-								image={require("../icons/2x/stop.png")}>
-							</DisplayAnImage>
-							:
+								image={require("../icons/2x/stop.png")}></DisplayAnImage>
+						) : (
 							<DisplayAnImage
-								image={require("../icons/2x/record.png")}>
-							</DisplayAnImage>
-						}
-						
+								image={require("../icons/2x/record.png")}></DisplayAnImage>
+						)}
 					</View>
 				</TouchableHighlight>
 			</View>
 		</View>
 	);
+	}
 }
 
 const styles = StyleSheet.create({
+	backButton: {
+		backgroundColor: "#CC0E3C",
+		width: "98%",
+		height: 0
+	},
+	backText: {
+		backgroundColor: "#CC0E3C",
+		width: "100%",
+		justifyContent: "center",
+		alignItems: "center",
+		bottom: 20
+	},
+	goBack: {
+		color: "white",
+		fontSize: 16,
+		fontFamily: "Montserrat_400Regular"
+	},
 	container: {
 		height: "100%",
 		width: "100%",
@@ -230,7 +275,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	bigbox: {
-		marginVertical: 10,
+		marginTop: 10,
 		width: "98%",
 		height: "20%",
 	},
@@ -264,15 +309,16 @@ const styles = StyleSheet.create({
 	},
 	textOne: {
 		fontSize: 21,
-		fontWeight: "bold",
+		fontFamily: "Montserrat_700Bold",
 		color: "black",
 	},
 	textBig: {
 		fontSize: 21,
-		fontWeight: "bold",
+		fontFamily: "Montserrat_700Bold",
 		color: "white",
 	},
 	textSubtitle: {
+		fontFamily: "Montserrat_400Regular",
 		fontSize: 15,
 		color: "#FFFF",
 		opacity: 50,

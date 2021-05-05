@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
-
+import { useIsFocused } from "@react-navigation/native";
 import { StyleSheet, TouchableOpacity, TextInput, Image } from "react-native";
 import { Text, View } from "../components/Themed";
-import * as Google from "expo-google-app-auth";
 import firebase from "firebase/app";
-// eslint-disable-next-line no-undef
 require("firebase/auth");
-// eslint-disable-next-line no-undef
 require("firebase/database");
 
-
 import { LogBox } from "react-native";
-
 LogBox.ignoreLogs(["Setting a timer"]);
 
 export default function addEmergencyContact(navigation) {
 
 	const [number, onChangeNumber] = useState(null);
 	const [Status, setStatus] = useState(null);
+	const isFocused = useIsFocused();
 
 	useEffect(() => {
 		setStatus(null);
@@ -36,8 +32,18 @@ export default function addEmergencyContact(navigation) {
 					.get()
 					.then((snapshot) => {
 						if (snapshot.exists()) {
-							onChangeNumber(snapshot.val().emerygency)
-							console.log(snapshot.val().emerygency)
+							let emerygencyContact = snapshot.val().emerygency;
+							if(emerygencyContact == undefined){
+								console.log("Adding emergency field")
+								firebase
+									.database()
+									.ref("/users" + result.uid)
+									.update({
+										"emerygency": "",
+									})
+							}
+							onChangeNumber(emerygencyContact)
+							console.log(emerygencyContact)
 						} else {
 							console.log("No data available");
 						}
@@ -46,21 +52,20 @@ export default function addEmergencyContact(navigation) {
 						});
 		})
 
-	}, []);
+	}, [navigation, isFocused]);
 
 	let addEmergencyContact = (text) => {
         let result = firebase.auth().currentUser;
-
-        firebase
-            .database()
-            .ref("/users" + result.uid)
-            .update({
-                "emerygency": text,
-            })
-		
 			onChangeNumber(text)
 			
 			if(text.length > 10) {
+
+				firebase
+					.database()
+					.ref("/users" + result.uid)
+					.update({
+						"emerygency": text,
+					})
 				setStatus("Saved!")
 			}
 			else{

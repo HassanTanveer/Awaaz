@@ -1,11 +1,8 @@
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Card, Title, } from 'react-native-paper';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-
-import MyComponent from '../components/helplineCard';
 
 export default function Awareness( navigation ) {
   return (
@@ -16,7 +13,7 @@ export default function Awareness( navigation ) {
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Harassment </Title>
-                <Paragraph style = {styles.paragraph}> What does Harassment Look Like? </Paragraph>
+                <Text style = {styles.paragraph}> What does Harassment Look Like? </Text>
             </Card.Content>
           </Card>
         </TouchableOpacity>
@@ -27,7 +24,7 @@ export default function Awareness( navigation ) {
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Sexual Harassment </Title>
-                <Paragraph style = {styles.paragraph}> What does Sexual Harassment Look Like? </Paragraph>
+                <Text style = {styles.paragraph}> What does Sexual Harassment Look Like? </Text>
             </Card.Content>
           </Card>
         </TouchableOpacity>
@@ -38,7 +35,7 @@ export default function Awareness( navigation ) {
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Workplace Harassment </Title>
-                <Paragraph style = {styles.paragraph}> What is harassment in workplace? </Paragraph>
+                <Text style = {styles.paragraph}> What is harassment in workplace? </Text>
             </Card.Content>
           </Card>
         </TouchableOpacity>
@@ -49,7 +46,7 @@ export default function Awareness( navigation ) {
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Cyber Harassment </Title>
-                <Paragraph style = {styles.paragraph}> What is Cyber Harassment? </Paragraph>
+                <Text style = {styles.paragraph}> What is Cyber Harassment? </Text>
             </Card.Content>
           </Card>
         </TouchableOpacity>
@@ -80,11 +77,12 @@ const styles = StyleSheet.create({
     elevation: 3
   },
   title: {
+      fontFamily: 'Montserrat_700Bold',
       fontSize: 21,
-      fontWeight: 'bold',
       textAlign: 'center'
   },
   paragraph: {
+      fontFamily: 'Montserrat_400Regular',
       textAlign: 'center'
   },
   none: {

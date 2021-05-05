@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Card, Title} from 'react-native-paper';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-import MyComponent from '../components/helplineCard';
 
 export default function Laws( navigation ) {
   return (
@@ -16,7 +14,7 @@ export default function Laws( navigation ) {
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Sexual Harassment </Title>
-                <Paragraph style = {styles.paragraph}> Laws Related To Sexual Harassment In Women </Paragraph>
+                <Text style = {styles.paragraph}> Laws Related To Sexual Harassment In Women </Text>
             </Card.Content>
           </Card>
         </TouchableOpacity>
@@ -27,7 +25,7 @@ export default function Laws( navigation ) {
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Workplace </Title>
-                <Paragraph style = {styles.paragraph}> Harassment Of Women At The Workplace </Paragraph>
+                <Text style = {styles.paragraph}> Harassment Of Women At The Workplace </Text>
             </Card.Content>
           </Card>
         </TouchableOpacity>
@@ -38,7 +36,7 @@ export default function Laws( navigation ) {
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Rape </Title>
-                <Paragraph style = {styles.paragraph}> Information On Rape In The Pakistan Penal Code </Paragraph>
+                <Text style = {styles.paragraph}> Information On Rape In The Pakistan Penal Code </Text>
             </Card.Content>
           </Card>
         </TouchableOpacity>
@@ -49,7 +47,7 @@ export default function Laws( navigation ) {
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Children </Title>
-                <Paragraph style = {styles.paragraph}> Laws For The Protection Of Childrens </Paragraph>
+                <Text style = {styles.paragraph}> Laws For The Protection Of Childrens </Text>
             </Card.Content>
           </Card>
         </TouchableOpacity>
@@ -72,7 +70,6 @@ const styles = StyleSheet.create({
     elevation: 3
   },
   container2: {
-    // height: 112,
     shadowOffset: { width: 0, height: 1 },
     shadowColor: '#F1D4D4',
     shadowOpacity: 100,

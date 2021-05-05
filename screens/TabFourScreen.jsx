@@ -20,6 +20,7 @@ export default function TabFourScreen(navigation) {
 	const [isLoggedIn, SetisLoggedIn] = useState("false");
 	const [currUser, SetcurrUser] = useState("Guest");
 
+
 	let onSignIn = (googleUser) => {
 		// We need to register an Observer on Firebase Auth to make sure auth is initialized.
 		var unsubscribe = firebase.auth().onAuthStateChanged((firebaseUser) => {
@@ -40,7 +41,7 @@ export default function TabFourScreen(navigation) {
 						firebase
 							.database()
 							.ref("/users" + result.user.uid)
-							.set({
+							.update({
 								gmail: result.user.email,
 								profile_picture:
 									result.additionalUserInfo.profile.picture,
@@ -50,11 +51,9 @@ export default function TabFourScreen(navigation) {
 								last_name:
 									result.additionalUserInfo.profile
 										.family_name,
-                				uid: result.user.uid,
-								emerygency: ""
+                				uid: result.user.uid
 							});
-					navigation.navigation.navigate("addEmergencyContact");
-					
+					navigation.navigation.navigate("SOS");
 					})
 					.catch((error) => {
 						console.error(error);
@@ -144,7 +143,6 @@ export default function TabFourScreen(navigation) {
 						style={styles.GooglePlusStyle}
 						onPress={() => signInWithGoogleAsync()}>
 						<Image
-							// eslint-disable-next-line no-undef
 							source={require("../images/Google.png")}
 							style={styles.ImageIconStyle}
 						/>
