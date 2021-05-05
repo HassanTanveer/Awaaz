@@ -9,7 +9,7 @@ export default function Awareness( navigation ) {
     <View style={styles.container}>
 
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('Harassment')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Description', {type: 'harassment'})}  style={styles.appButtonContainer}>
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Harassment </Title>
@@ -20,7 +20,7 @@ export default function Awareness( navigation ) {
       </View>
 
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('SexualHarassment')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Description', {type: 'sexualHarassment'})}  style={styles.appButtonContainer}>
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Sexual Harassment </Title>
@@ -31,7 +31,7 @@ export default function Awareness( navigation ) {
       </View>
 
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('WorkplaceHarassment')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Description', {type: 'workplaceHarassment'})}  style={styles.appButtonContainer}>
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Workplace Harassment </Title>
@@ -42,7 +42,7 @@ export default function Awareness( navigation ) {
       </View>
       
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => navigation.navigation.navigate('CyberHarassment')}  style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigation.navigate('Description', {type: 'cyberHarassment'})}  style={styles.appButtonContainer}>
           <Card style = {styles.container2}>
             <Card.Content>
                 <Title style = {styles.title}> Cyber Harassment </Title>

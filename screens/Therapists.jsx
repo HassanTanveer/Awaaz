@@ -4,18 +4,16 @@ import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
 
 import CallCard from '../components/callCard'
+import Loading from "../components/Loading";
 
-// eslint-disable-next-line no-undef
 import firebase from "firebase/app";
-// eslint-disable-next-line no-undef
 require('firebase/auth')
-// eslint-disable-next-line no-undef
 require('firebase/firestore')
 
 export default function Therapists() {
 
   let db = firebase.firestore();
-  const [TherapistInfo, setTherapistInfo] = useState([{"empty": "yes"}]);
+  const [TherapistInfo, setTherapistInfo] = useState([]);
 
   useEffect(() => {
     let data = db.collection("therapists")
@@ -27,6 +25,9 @@ export default function Therapists() {
       })
   }, []);
 
+  if(TherapistInfo.length < 1) {
+    return <Loading/>
+  }
   return (
     <View style={styles.container}>
       {

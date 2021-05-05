@@ -13,7 +13,6 @@ import Lawyers from '../screens/Lawyers';
 import Therapists from '../screens/Therapists';
 import Helplines from '../screens/Helplines';
 import Awareness from '../screens/Awareness';
-import Harassment from '../screens/Harassment';
 import SexualHarassment from '../screens/SexualHarassment';
 import Reporting from '../screens/Reporting';
 import Parenting from '../screens/Parenting';
@@ -29,6 +28,7 @@ import WorkplaceHarassment from '../screens/WorkplaceHarassment';
 import CyberHarassment from '../screens/CyberHarassment';
 import Login from '../screens/login';
 import addEmergencyContact from '../screens/EmergencyContacts';
+import Description from '../screens/Description';
 
 // eslint-disable-next-line no-undef
 require('firebase/auth')
@@ -216,10 +216,10 @@ function TabTwoNavigator() {
         }}
       />
       <TabTwoStack.Screen
-        name="Harassment"
-        component={Harassment}
+        name="Description"
+        component={Description}
         options={{ 
-          title: 'Harassment',
+          title: 'Awareness',
           headerStyle: {
           backgroundColor: '#FFF',
           },
