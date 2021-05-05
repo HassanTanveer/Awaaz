@@ -13,8 +13,8 @@ const CallCard = (props) => (
 	<Card style={styles.container}>
 		<Card.Content>
 			<Title style={styles.title}>{props.name}</Title>
-			<Paragraph>{props.number}</Paragraph>
-			<Paragraph>{props.content}</Paragraph>
+			<Text style={styles.content}>{props.number}</Text>
+			<Text style={styles.content}>{props.content}</Text>
 		</Card.Content>
 		
         <Card.Cover source = {props.image}  style={styles.image}/>
@@ -54,9 +54,15 @@ const styles = StyleSheet.create({
 		shadowRadius: 4,
 		elevation: 3,
 	},
+	content: {
+		fontFamily: "Montserrat_400Regular",
+		fontSize: 14,
+    	marginTop: 5,
+		width: "95%"
+	},
 	title: {
-		fontSize: 21,
-		fontWeight: "bold",
+		fontFamily: "Montserrat_700Bold",
+		fontSize: 18,
 	},
 	none: {
 		display: "none",

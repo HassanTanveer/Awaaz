@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+
   card: {
     margin: 5,
     shadowOffset: { width: 0, height: 1 },
