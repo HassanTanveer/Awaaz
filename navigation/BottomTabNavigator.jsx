@@ -120,7 +120,7 @@ function TabOneNavigator() {
         name="TabOneScreen"
         component={TabOneScreen}
         options={{ 
-          title: 'Harassment Assisted',
+          title: 'Awaaz',
           headerStyle: {
           backgroundColor: '#FFF',
           },
