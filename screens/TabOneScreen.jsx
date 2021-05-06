@@ -71,7 +71,10 @@ export default function TabOneScreen(navigation) {
 	}, [navigation, isFocused]);
 
 	let onPressButton = () => {
-		if(!emergencyStatus){
+		if(!firebase.auth().currentUser){
+			alert("Please Login First")
+		}
+		else if(!emergencyStatus){
 			alert("Add emergency contact first!")
 		}
 		else{
