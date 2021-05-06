@@ -22,6 +22,7 @@ export default function TabFourScreen(navigation) {
 
 
 	let onSignIn = (googleUser) => {
+		navigation.navigation.navigate("SOS");
 		// We need to register an Observer on Firebase Auth to make sure auth is initialized.
 		var unsubscribe = firebase.auth().onAuthStateChanged((firebaseUser) => {
 			unsubscribe();
@@ -53,7 +54,6 @@ export default function TabFourScreen(navigation) {
 										.family_name,
                 				uid: result.user.uid
 							});
-					navigation.navigation.navigate("SOS");
 					})
 					.catch((error) => {
 						console.error(error);

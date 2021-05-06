@@ -29,6 +29,7 @@ import CyberHarassment from '../screens/CyberHarassment';
 import Login from '../screens/login';
 import addEmergencyContact from '../screens/EmergencyContacts';
 import Description from '../screens/Description';
+import Chat from '../screens/Chat'
 
 // eslint-disable-next-line no-undef
 require('firebase/auth')
@@ -36,7 +37,6 @@ require('firebase/auth')
 const BottomTab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
-
   return (
     <BottomTab.Navigator
       initialRouteName="SOS"
@@ -496,6 +496,22 @@ function TabThreeNavigator() {
           },
         }}
       />
+      <TabThreeStack.Screen
+        name="Chat"
+        component={Chat}
+        options={({route}) => ({ 
+          title: route.params.name,
+          headerStyle: {
+          backgroundColor: '#FFF',
+          },
+          headerTintColor: '#790C5A',
+          headerTitleStyle: {
+          color: "#790C5A",
+          fontWeight: 'bold',
+          },
+        })}
+      />
+
     </TabThreeStack.Navigator>
   );
 }

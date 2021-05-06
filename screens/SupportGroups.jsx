@@ -9,7 +9,7 @@ export default function Awareness(navigation) {
 		<View style={styles.container}>
 			<View style={styles.card}>
 				<TouchableOpacity
-					onPress={() => navigation.navigation.navigate("NotFound")}
+					onPress={() => navigation.navigation.navigate("Chat", {type: "sexualHarassmentChat", name: "Sexual Harassment"})}
 					style={styles.appButtonContainer}>
 					<Card style={styles.container2}>
 						<Card.Content>
@@ -17,10 +17,6 @@ export default function Awareness(navigation) {
 								{" "}
 								Sexual Harassment{" "}
 							</Title>
-							<Paragraph style={styles.paragraph}>
-								{" "}
-								Last Post: 1 Hour Ago{" "}
-							</Paragraph>
 						</Card.Content>
 					</Card>
 				</TouchableOpacity>
@@ -28,7 +24,7 @@ export default function Awareness(navigation) {
 
 			<View style={styles.card}>
 				<TouchableOpacity
-					onPress={() => navigation.navigation.navigate("NotFound")}
+					onPress={() => navigation.navigation.navigate("Chat", {type: "WorkplaceHarassmentChat", name: "Workplace Harassment"})}
 					style={styles.appButtonContainer}>
 					<Card style={styles.container2}>
 						<Card.Content>
@@ -36,10 +32,6 @@ export default function Awareness(navigation) {
 								{" "}
 								Workplace Harassment{" "}
 							</Title>
-							<Paragraph style={styles.paragraph}>
-								{" "}
-								Last Post: 1 Hour Ago{" "}
-							</Paragraph>
 						</Card.Content>
 					</Card>
 				</TouchableOpacity>
@@ -47,15 +39,11 @@ export default function Awareness(navigation) {
 
 			<View style={styles.card}>
 				<TouchableOpacity
-					onPress={() => navigation.navigation.navigate("NotFound")}
+					onPress={() => navigation.navigation.navigate("Chat", {type: "physicalAbuseChat", name: "Physical Abuse"})}
 					style={styles.appButtonContainer}>
 					<Card style={styles.container2}>
 						<Card.Content>
 							<Title style={styles.title}> Physical Abuse </Title>
-							<Paragraph style={styles.paragraph}>
-								{" "}
-								Last Post: 1 Hour Ago{" "}
-							</Paragraph>
 						</Card.Content>
 					</Card>
 				</TouchableOpacity>

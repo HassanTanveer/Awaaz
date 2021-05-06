@@ -15,9 +15,7 @@ import {
 import AppLoading from "expo-app-loading";
 
 import firebase from "firebase/app";
-// eslint-disable-next-line no-undef
 require("firebase/auth");
-// eslint-disable-next-line no-undef
 require("firebase/database");
 
 export default function TabOneScreen(navigation) {
