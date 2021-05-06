@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from "react";
 import { StyleSheet, TouchableHighlight } from "react-native";
+import { useIsFocused } from "@react-navigation/native";
 import * as SMS from "expo-sms";
 import { Text, View } from "../components/Themed";
 import DisplayAnImage from "../components/AddImage";
@@ -35,8 +36,12 @@ export default function TabOneScreen(navigation) {
 	const [recording, setRecording] = React.useState();
 	const [recordName, setRecordName] = React.useState("Record");
 	const [subtitle, setSubtile] = React.useState("Notify your emergency contact");
+	const [emergencyStatus, ChangeEmergencyStatus] = React.useState(undefined);
+	
+	const isFocused = useIsFocused();
 
-	let onPressButton = () => {
+	useEffect(() => {
+
 		let f = new Promise(function(myResolve, myReject) {
 			let result = firebase.auth().currentUser;
 			if(result !== null){
@@ -44,58 +49,95 @@ export default function TabOneScreen(navigation) {
 			}
 		});
 
-		if (SOSText == "SOS") {
-			setSOSText("Sending...");
-
-			(async () => {
-				let { status } = await Location.requestPermissionsAsync();
-				if (status !== "granted") {
-					console.log("Permission to access location was denied");
-					return;
-				}
-
-				let location = await Location.getCurrentPositionAsync({});
-				setLocation(location);
-				
-				f.then((result) => {
-					firebase
+		f.then((result) => {
+				firebase
 					.database()
 					.ref("/users" + result.uid)
 					.get()
 					.then((snapshot) => {
 						if (snapshot.exists()) {
-							setNumber(snapshot.val().emerygency);
-							let google_maps_link = `https://maps.google.com/?q=${location.coords.latitude},${location.coords.longitude}`;
-							// console.log(google_maps_link);
-							SMS.isAvailableAsync().then(() => {
-								SMS.sendSMSAsync(
-									[snapshot.val().emerygency],
-									"This is a test SOS message for my application.\n" +
-										`My location is: ${google_maps_link}`
-								)
-								.then(() => {
-									setTimeout(function () {
-										setSOSText("Sent");
-										setSubtile("")
-									}, 2000);
-								})
-								.catch((err)=>console.log(err))
-							});
-							// console.log(snapshot.val().emerygency);
+							let emerygencyContact = snapshot.val().emerygency;
+							console.log(emerygencyContact)
+							if(emerygencyContact != undefined || emerygencyContact != ""){
+								ChangeEmergencyStatus(emerygencyContact)
+							}
 						} else {
 							console.log("No data available");
 						}
-					})
-					.catch((error) => {
-						console.error(error);
-					});
-				})
-				
-			})();
-		} else {
-			setSOSText("SOS");
-			setSubtile("Notify your emergency contact")
+						}).catch((error) => {
+							console.error(error);
+						});
+		})
+
+		console.log(emergencyStatus)
+	}, [navigation, isFocused]);
+
+	let onPressButton = () => {
+		if(!emergencyStatus){
+			alert("Add emergency contact first!")
 		}
+		else{
+			let f = new Promise(function(myResolve, myReject) {
+				let result = firebase.auth().currentUser;
+				if(result !== null){
+					myResolve(result); // when successful
+				}
+			});
+	
+			if (SOSText == "SOS") {
+				setSOSText("Sending...");
+	
+				(async () => {
+					let { status } = await Location.requestPermissionsAsync();
+					if (status !== "granted") {
+						console.log("Permission to access location was denied");
+						return;
+					}
+	
+					let location = await Location.getCurrentPositionAsync({});
+					setLocation(location);
+					
+					f.then((result) => {
+						firebase
+						.database()
+						.ref("/users" + result.uid)
+						.get()
+						.then((snapshot) => {
+							if (snapshot.exists()) {
+								setNumber(snapshot.val().emerygency);
+								let google_maps_link = `https://maps.google.com/?q=${location.coords.latitude},${location.coords.longitude}`;
+								// console.log(google_maps_link);
+								SMS.isAvailableAsync().then(() => {
+									SMS.sendSMSAsync(
+										[snapshot.val().emerygency],
+										"This is a test SOS message for my application.\n" +
+											`My location is: ${google_maps_link}`
+									)
+									.then(() => {
+										setTimeout(function () {
+											setSOSText("Sent");
+											setSubtile("")
+										}, 2000);
+									})
+									.catch((err)=>console.log(err))
+								});
+								// console.log(snapshot.val().emerygency);
+							} else {
+								console.log("No data available");
+							}
+						})
+						.catch((error) => {
+							console.error(error);
+						});
+					})
+					
+				})();
+			} else {
+				setSOSText("SOS");
+				setSubtile("Notify your emergency contact")
+			}
+		}
+		
 	};
 
 	let stylebox = styles.textBig;
@@ -242,6 +284,25 @@ export default function TabOneScreen(navigation) {
 					</View>
 				</TouchableHighlight>
 			</View>
+
+			{emergencyStatus ?
+
+				<View>
+					
+				</View> :
+
+				<View style={styles.addemergency}>
+					<TouchableHighlight
+						onPress={() => navigation.navigation.navigate("addEmergencyContact")}
+						style={styles.inner}
+						activeOpacity={0.6}
+						underlayColor='#DDDDDD'>
+						<View style={styles.appButtonContainer}>
+							<Text style={styles.textEM}>Tap to add emergency contact</Text>
+						</View>
+					</TouchableHighlight>
+				</View>
+			}
 		</View>
 	);
 	}
@@ -283,6 +344,12 @@ const styles = StyleSheet.create({
 		paddingHorizontal: "1%",
 		marginTop: 10,
 	},
+	addemergency: {
+		width: "99%",
+		height: "15%",
+		paddingHorizontal: "1%",
+		marginTop: 10,
+	},
 	bigInner: {
 		flex: 1,
 		backgroundColor: "#CC0E3C",
@@ -305,10 +372,18 @@ const styles = StyleSheet.create({
 		shadowRadius: 4,
 		elevation: 3,
 	},
+		
 	textOne: {
 		fontSize: 21,
 		fontFamily: "Montserrat_700Bold",
 		color: "black",
+		textAlign: "center"
+	},
+	textEM: {
+		fontSize: 18,
+		fontFamily: "Montserrat_700Bold",
+		color: "black",
+		textAlign: "center"
 	},
 	textBig: {
 		fontSize: 21,
