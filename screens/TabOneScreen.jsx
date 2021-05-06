@@ -57,7 +57,6 @@ export default function TabOneScreen(navigation) {
 					.then((snapshot) => {
 						if (snapshot.exists()) {
 							let emerygencyContact = snapshot.val().emerygency;
-							console.log(emerygencyContact)
 							if(emerygencyContact != undefined || emerygencyContact != ""){
 								ChangeEmergencyStatus(emerygencyContact)
 							}
@@ -69,7 +68,6 @@ export default function TabOneScreen(navigation) {
 						});
 		})
 
-		console.log(emergencyStatus)
 	}, [navigation, isFocused]);
 
 	let onPressButton = () => {
