@@ -6,9 +6,7 @@ import { Text, View } from "../components/Themed";
 import addEmergencyContact from "../screens/EmergencyContacts";
 import * as Google from "expo-google-app-auth";
 import firebase from "firebase/app";
-// eslint-disable-next-line no-undef
 require("firebase/auth");
-// eslint-disable-next-line no-undef
 require("firebase/database");
 
 
@@ -85,6 +83,7 @@ export default function TabFourScreen(navigation) {
 	let signInWithGoogleAsync = async () => {
 		try {
 			const result = await Google.logInAsync({
+				androidStandaloneAppClientId: "80984142514-f4fp4ec1q9sjkum726je2ur36b0i69n6.apps.googleusercontent.com",
 				androidClientId:
 					"80984142514-pk1j1cvjblus6hc4fmafu9obpfrj7kb2.apps.googleusercontent.com",
 				iosClientId:

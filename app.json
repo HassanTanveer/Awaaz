@@ -4,11 +4,11 @@
     "slug": "awaaz",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/login-page1.png",
+      "image": "./assets/images/splash-new.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,12 +23,20 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/login-page1.png",
+        "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "config": {
+        "googleSignIn": {
+          "apiKey": "AIzaSyBBeykdm3g95k-tXFFwMAQHtliJoCnDxLc",
+          "certificateHash": "BC:22:FF:71:D4:90:30:AE:DF:8C:40:19:7E:92:92:08:9C:45:08:C5"
+        }
+      },
+      "package": "com.awaaz.harassmentassisted",
+      "versionCode": 1
     },
     "web": {
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/logo.png"
     },
     "description": "",
     "githubUrl": "https://github.com/HassanTanveer/Awaaz"
