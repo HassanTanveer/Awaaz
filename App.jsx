@@ -2,7 +2,6 @@ import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import {Image} from "react-native"
 import useCachedResources from './hooks/useCachedResources';
 import Navigation from './navigation';
 import firebase from "firebase/app";
@@ -39,13 +38,14 @@ export default function App() {
 	});
   const isLoadingComplete = useCachedResources();
 
-  if (!isLoadingComplete || !fontsLoaded) {
-    return <Image source={require('./assets/login-page1.png')}/>;
+  if (!isLoadingComplete && !fontsLoaded) {
+    return null;
   } 
   else {
       return (
         <SafeAreaProvider>
           <Navigation/>
+          <StatusBar/>
         </SafeAreaProvider>
       );
   }
