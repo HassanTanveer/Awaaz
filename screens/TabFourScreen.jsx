@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { StyleSheet, TouchableOpacity, Image } from "react-native";
 
@@ -18,7 +18,12 @@ export default function TabFourScreen(navigation) {
 	const [isLoggedIn, SetisLoggedIn] = useState("false");
 	const [currUser, SetcurrUser] = useState("Guest");
 
-
+	useEffect(() => {
+		if(firebase.auth().currentUser){
+			SetisLoggedIn("true")
+		}
+	})
+	
 	let onSignIn = (googleUser) => {
 		navigation.navigation.navigate("SOS");
 		// We need to register an Observer on Firebase Auth to make sure auth is initialized.

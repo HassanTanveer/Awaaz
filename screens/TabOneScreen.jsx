@@ -58,7 +58,7 @@ export default function TabOneScreen(navigation) {
 						if (snapshot.exists()) {
 							let emerygencyContact = snapshot.val().emerygency;
 							if(emerygencyContact != undefined || emerygencyContact != ""){
-								ChangeEmergencyStatus(emerygencyContact)
+								ChangeEmergencyStatus(undefined)
 							}
 						} else {
 							console.log("No data available");
@@ -293,7 +293,7 @@ export default function TabOneScreen(navigation) {
 				</View> :
 
 				<View style={styles.addemergency}>
-					<TouchableHighlight
+					{/* <TouchableHighlight
 						onPress={() => navigation.navigation.navigate("addEmergencyContact")}
 						style={styles.inner}
 						activeOpacity={0.6}
@@ -301,7 +301,7 @@ export default function TabOneScreen(navigation) {
 						<View style={styles.appButtonContainer}>
 							<Text style={styles.textEM}>Tap to add emergency contact</Text>
 						</View>
-					</TouchableHighlight>
+					</TouchableHighlight> */}
 				</View>
 			}
 		</View>
@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
 	},
 		
 	textOne: {
-		fontSize: 21,
+		fontSize: 20,
 		fontFamily: "Montserrat_700Bold",
 		color: "black",
 		textAlign: "center"
