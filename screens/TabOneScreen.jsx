@@ -37,11 +37,19 @@ export default function TabOneScreen(navigation) {
 	const [recordName, setRecordName] = React.useState("Record");
 	const [subtitle, setSubtile] = React.useState("Notify your emergency contact");
 	const [emergencyStatus, ChangeEmergencyStatus] = React.useState(undefined);
+	const [isLoggedIn, SetisLoggedIn] = useState("false");
 	
 	const isFocused = useIsFocused();
 
 	useEffect(() => {
 
+		if(firebase.auth().currentUser){
+			SetisLoggedIn("true")
+		}
+		else{
+			SetisLoggedIn("false")
+		}
+		
 		let f = new Promise(function(myResolve, myReject) {
 			let result = firebase.auth().currentUser;
 			if(result !== null){
@@ -58,7 +66,7 @@ export default function TabOneScreen(navigation) {
 						if (snapshot.exists()) {
 							let emerygencyContact = snapshot.val().emerygency;
 							if(emerygencyContact != undefined || emerygencyContact != ""){
-								ChangeEmergencyStatus(undefined)
+								ChangeEmergencyStatus(emerygencyContact)
 							}
 						} else {
 							console.log("No data available");
@@ -71,7 +79,7 @@ export default function TabOneScreen(navigation) {
 	}, [navigation, isFocused]);
 
 	let onPressButton = () => {
-		if(!firebase.auth().currentUser){
+		if(isLoggedIn == "false"){
 			alert("Please Login First")
 		}
 		else if(!emergencyStatus){

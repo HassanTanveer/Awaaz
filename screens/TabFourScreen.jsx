@@ -25,7 +25,7 @@ export default function TabFourScreen(navigation) {
 	})
 	
 	let onSignIn = (googleUser) => {
-		navigation.navigation.navigate("SOS");
+		// navigation.navigation.navigate("SOS");
 		// We need to register an Observer on Firebase Auth to make sure auth is initialized.
 		var unsubscribe = firebase.auth().onAuthStateChanged((firebaseUser) => {
 			unsubscribe();
@@ -62,7 +62,7 @@ export default function TabFourScreen(navigation) {
 						console.error(error);
 					});
 			} else {
-				navigation.navigation.navigate("SOS");
+				// navigation.navigation.navigate("SOS");
 				console.log("User already signed-in Firebase.");
 			}
 		});
@@ -97,6 +97,7 @@ export default function TabFourScreen(navigation) {
 			});
 
 			if (result.type === "success") {
+				navigation.navigation.navigate("SOS");
 				firebase.auth().onAuthStateChanged((user) => {
 					if (user) {
 						SetisLoggedIn("true");
